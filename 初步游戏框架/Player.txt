@@ -1,0 +1,6 @@
+
+1.PlayerBase 继承 MonoBehavior
+实现Player共同属性
+
+2.多个Player脚本继承PlayerBase
+实现特有功能
