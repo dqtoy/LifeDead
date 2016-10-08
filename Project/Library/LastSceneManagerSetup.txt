@@ -1,8 +1,4 @@
 sceneSetups:
-<<<<<<< HEAD
-- path: Assets/LifeDeadUI/SelectPlayer.unity
-=======
-- path: Assets/LifeDeadMain/Scenes/Mission1.unity
->>>>>>> 69f669a349f42d47e4bcda82574f651b749a413d
+- path: Assets/LifeDeadUI/Scenes/SelectPlayer.unity
   isLoaded: 1
   isActive: 1
