@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/LifeDeadUI/Scenes/SelectPlayer.unity
+- path: Assets/LifeDeadUI/Scenes/PlayMenu.unity
   isLoaded: 1
   isActive: 1

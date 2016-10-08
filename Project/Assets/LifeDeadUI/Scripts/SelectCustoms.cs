@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 public class SelectCustoms : MonoBehaviour
 {
     private Image[] imageArray;
@@ -15,6 +16,7 @@ public class SelectCustoms : MonoBehaviour
    private int index;
    public  int m_levelSum;
 
+    private Button[] m_switchButton;
     void InitImageArray()
     {
         imageArray[0].transform.position = CenterPos;
@@ -29,9 +31,13 @@ public class SelectCustoms : MonoBehaviour
     {
 
         imageArray = new Image[m_levelSum];
+        m_switchButton = new Button[m_levelSum];
         for (int i = 0; i < m_levelSum;i++)
         {
             imageArray[i]= GameObject.Find("customs"+i).GetComponent<Image>();
+            m_switchButton[i]=GameObject.Find("customs" + i).GetComponent<Button>();
+            m_switchButton[i].onClick.AddListener(SwitchLevel);
+
         }
 
         index = 0;
@@ -73,6 +79,9 @@ public class SelectCustoms : MonoBehaviour
         Tweener RightMoveCenter = imageArray[index].transform.DOMove(CenterPos, 0.5f);
     }
     #endregion
-
+    public void SwitchLevel()
+    {
+        SceneManager.LoadScene(2);
+    }
 
 }

@@ -1,47 +1,63 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
-using System;
+using DG.Tweening;
+using UnityEngine.SceneManagement;
+
 
 public class SelectPlayer : MonoBehaviour
 {
 
-    private Button m_leftButton;
-    private Button m_rightButton;
+    private Button m_upButton;
+    private Button m_downButton;
     private Button m_startButton;
 
     private Text m_introText;
 
-    private Vector3 m_startPos;
-    private Vector3 m_endPos;
-    private float m_offestPos;
-    private bool m_isDrag;
-
-    GameObject Knight;
     public GameObject[] m_Players;
-    
-    
+    private Vector2 UpPos = new Vector2(-0.5f, 10);
+    private Vector2 DownPos = new Vector2(-0.5f, -10);
+    private Vector2 CenterPos = new Vector2(-0.5f, 0);
+    private int index;
+    void Init()
+    {
+        m_Players[0].transform.position = CenterPos;
+        for (int i = 1; i < m_Players.Length; i++)
+        {
+            m_Players[i].transform.position = UpPos;
+        }
+    }
     void Awake()
     {
         #region Button按钮注册事件
-        m_leftButton = GameObject.Find("TurnLeftButton").GetComponent<Button>();
-        m_leftButton.onClick.AddListener(LeftButtonAction);
+        m_upButton = GameObject.Find("TurnLeftButton").GetComponent<Button>();
+        m_upButton.onClick.AddListener(UpButtonAction);
 
-        m_rightButton = GameObject.Find("TurnRightButton").GetComponent<Button>();
-        m_rightButton.onClick.AddListener(RightButtonAction);
+        m_downButton = GameObject.Find("TurnRightButton").GetComponent<Button>();
+        m_downButton.onClick.AddListener(DownButtonAction);
 
         m_startButton = GameObject.Find("StartButton").GetComponent<Button>();
         m_startButton.onClick.AddListener(StartButtonAction);
         #endregion
-
-        m_isDrag = false;
         m_introText = GameObject.Find("IntroText").GetComponent<Text>();
 
-        Knight = GameObject.Find("Knight");
+        m_Players = new GameObject[m_Players.Length];
+       
+        for (int i = 0; i < m_Players.Length; i++)
+        {
+            m_Players[0] = GameObject.Find("Alien");
+            m_Players[1] = GameObject.Find("Knight");
+            m_Players[2] = GameObject.Find("Ninja");
+            m_Players[3] = GameObject.Find("Girl");
+            m_Players[4] = GameObject.Find("Mummy");
+            m_Players[5] = GameObject.Find("Wizard");
+            m_Players[6] = GameObject.Find("EyeMonter");
+        }
+        index = 0;
+        Init();
     }
-    
-    
+
+
     void Update()
     {
 
@@ -49,27 +65,40 @@ public class SelectPlayer : MonoBehaviour
         
     }
     #region 左键点击事件
-    public void LeftButtonAction()
+    public void UpButtonAction()
     {
+        if (index < 1)
+        {
+            return;
+        }
 
+        index--;
+
+        Tweener CenterMoveRight = m_Players[index + 1].transform.DOMove(UpPos, 0.5f);
+        Tweener LeftMoveCenter = m_Players[index].transform.DOMove(CenterPos, 0.5f);
     }
     #endregion
     #region 右键点击事件
-    public void RightButtonAction()
+    public void DownButtonAction()
     {
+        if (index > m_Players.Length - 2)
+        {
+            return;
+        }
 
+        index++;
+
+        Tweener CenterMoveLeft = m_Players[index - 1].transform.DOMove(DownPos, 0.5f);
+
+        Tweener RightMoveCenter = m_Players[index].transform.DOMove(CenterPos, 0.5f);
     }
     #endregion
     #region 开始按钮点击事件
     public void StartButtonAction()
     {
-
+        SceneManager.LoadScene(3);
     }
     #endregion
-    #region 拖动选择人物
 
-    
-
-    #endregion
 
 }
