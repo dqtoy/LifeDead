@@ -39,11 +39,11 @@ public class PlayerController : MonoBehaviour
     #region Unity回调
 
     void Awake()
-    {
+    {                          
         // 从上一场景中获取关卡角色数据
         GetUIData();
 
-        // 加载Player资源 ---？？
+        // 加载Player资源
         LoadResourcesPlayer(m_playerName);
 
         // 创建Player
@@ -119,7 +119,7 @@ public class PlayerController : MonoBehaviour
         m_player = Instantiate(m_PlayerPrefab, m_playerStartPos, new Quaternion(0, 0.7f, 0, 0.7f)) as GameObject;
     }
 
-    #endregion
+    #endregion  
 }
 
 
