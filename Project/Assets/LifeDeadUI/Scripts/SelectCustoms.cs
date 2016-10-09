@@ -24,7 +24,7 @@ public class SelectCustoms : MonoBehaviour
     {
         imageArray[0].transform.position = CenterPos;
 
-        for (int i = 1; i < 5; i++)
+        for (int i = 1; i < 11; i++)
         {
             imageArray[i].rectTransform.position = RightPos;
         }
@@ -93,16 +93,16 @@ public class SelectCustoms : MonoBehaviour
     #region 设置关卡名称
     void SetLevleName()
     {
-        m_levelName[0] = "Animation1";
-        m_levelName[1] = "Mission01";
-        m_levelName[2] = "Mission02";
-        m_levelName[3] = "Mission03";
-        m_levelName[4] = "Mission04";
-        m_levelName[4] = "Mission05";
-        m_levelName[6] = "Mission06";
-        m_levelName[7] = "Mission07";
-        m_levelName[8] = "Mission08";
-        m_levelName[9] = "Mission09";
+        m_levelName[0] = "Level01Animation";
+        m_levelName[1] = "Mission1";
+        m_levelName[2] = "Mission2";
+        m_levelName[3] = "Mission3";
+        m_levelName[4] = "Mission4";
+        m_levelName[4] = "Mission5";
+        m_levelName[6] = "Mission6";
+        m_levelName[7] = "Mission7";
+        m_levelName[8] = "Mission8";
+        m_levelName[9] = "Mission9";
         m_levelName[10] = "Mission10";
     }
     #endregion
