@@ -1,4 +1,20 @@
 sceneSetups:
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+- path: Assets/LifeDeadAudio/Scenes/TestScene.unity
+=======
+- path: Assets/LifeDeadUI/Scenes/PlayMenu.unity
+>>>>>>> 9473a653a88342dd7b7569dfbc6344086122fb59
+=======
+- path: Assets/LifeDeadAnimations/Level01Animation.unity
+>>>>>>> c3fc4c0dd04ab9c8ed4b42a11eb110358fa85acb
+=======
+- path: Assets/LifeDeadLevel/Scenes/Mission1.unity
+>>>>>>> 7fd6234314b9439821b1b7470a848bec000acb3a
+=======
 - path: Assets/LifeDeadUI/Scenes/StartMenu.unity
+>>>>>>> de196f8cd43f4ff725d4e37bbd42898618b21a58
   isLoaded: 1
   isActive: 1

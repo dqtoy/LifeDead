@@ -29,7 +29,8 @@ public abstract class PlayerAudioAbstract : MonoBehaviour
     /// <summary>
     /// 播放Player死亡音效 Playr通用
     /// </summary>
-    public abstract void PlayDeadAudio();
+	public abstract void PlayGirlDeadAudio();
+	public abstract void PlayManDeadAudio ();
 
     /// <summary>
     /// 播放Player行走音效 Playr通用

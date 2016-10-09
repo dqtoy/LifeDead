@@ -38,5 +38,14 @@ public abstract class SceneAudioAbstract : MonoBehaviour
     /// 播放死亡场景背景音效
     /// </summary>
     public abstract void PlayDeadBGAudio();
+	public abstract void PlayButtonAudioA ();
+	public abstract void PlayButtonAudioB ();
+	public abstract void PlayEatAudio ();
+	public abstract void PlayPauseAudio();
+	public abstract void PlayWriteBGMAudio ();
+	public abstract void PlayDrinkAudio();
+	public abstract void PlayFinishAudio();
+	public abstract void PlaySelectAudio ();
+
 	
 }
