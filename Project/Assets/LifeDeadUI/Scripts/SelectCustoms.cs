@@ -12,9 +12,9 @@ public class SelectCustoms : MonoBehaviour
 
     private string[] m_levelName;
 
-    private Vector2 LeftPos = new Vector2(-650, 300);
-    private Vector2 RightPos = new Vector2(1600, 300);
-    private Vector2 CenterPos = new Vector2(400, 300);
+    private RectTransform LeftPos;
+    private RectTransform RightPos;
+    private RectTransform CenterPos;
     private int index;
     public int m_levelSum;
 
@@ -22,7 +22,7 @@ public class SelectCustoms : MonoBehaviour
     #region 初始化
     void InitImageArray()
     {
-        imageArray[0].transform.position = CenterPos;
+        imageArray[0].rectTransform.position = CenterPos.position;
 
         //for (int i = 1; i < 11; i++)
         //{
@@ -32,6 +32,9 @@ public class SelectCustoms : MonoBehaviour
     #endregion
     void Awake()
     {
+        LeftPos = GameObject.Find("LeftPos").GetComponent<RectTransform>();
+        RightPos = GameObject.Find("RightPos").GetComponent<RectTransform>();
+        CenterPos = GameObject.Find("CenterPos").GetComponent<RectTransform>();
         m_levelName = new string[m_levelSum];
 
         imageArray = new Image[m_levelSum];
@@ -64,8 +67,8 @@ public class SelectCustoms : MonoBehaviour
 
         index--;
 
-        Tweener CenterMoveRight = imageArray[index + 1].transform.DOMove(RightPos, 0.5f);
-        Tweener LeftMoveCenter = imageArray[index].transform.DOMove(CenterPos, 0.5f);
+        Tweener CenterMoveRight = imageArray[index + 1].rectTransform.DOMove(RightPos.position, 0.5f);
+        Tweener LeftMoveCenter = imageArray[index].rectTransform.DOMove(CenterPos.position, 0.5f);
     }
     #endregion
     #region 向左点击事件
@@ -78,9 +81,8 @@ public class SelectCustoms : MonoBehaviour
 
         index++;
 
-        Tweener CenterMoveLeft = imageArray[index - 1].transform.DOMove(LeftPos, 0.5f);
-
-        Tweener RightMoveCenter = imageArray[index].transform.DOMove(CenterPos, 0.5f);
+        Tweener CenterMoveLeft = imageArray[index - 1].rectTransform.DOMove(LeftPos.position, 0.5f);
+        Tweener RightMoveCenter = imageArray[index].rectTransform.DOMove(CenterPos.position, 0.5f);
     }
     #endregion
     #region 切换关卡
