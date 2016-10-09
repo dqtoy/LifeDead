@@ -8,6 +8,10 @@ public class SceneAudio : SceneAudioAbstract {
 	private AudioClip SummerBGM;
 	private AudioClip SwampBGM;
 	private AudioSource SceneAudios;
+	public override void LoadSceneAudioClips(){
+	}
+	public override void AddRigidbodyCom(){
+	}
 	void Start(){
 		SceneAudios = GameObject.Find ("SceneAudio").GetComponent<AudioSource> ();
 	}

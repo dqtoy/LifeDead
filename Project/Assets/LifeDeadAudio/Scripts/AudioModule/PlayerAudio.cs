@@ -11,6 +11,10 @@ public class PlayerAudio : PlayerAudioAbstract
 	private AudioClip Jump;
 	private AudioClip Laser;
 	private AudioSource PlayerAudios;
+	public override void LoadPlayerAudioClips(){
+	}
+	public override void AddRigidbodyCom(){
+	}
 	public void Start(){
 		PlayerAudios =GameObject.Find("PlayerAudio").GetComponent<AudioSource> ();
 	}

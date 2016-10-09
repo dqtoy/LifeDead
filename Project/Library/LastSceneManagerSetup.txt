@@ -1,4 +1,8 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/LifeDeadAudio/Scenes/TestScene.unity
+=======
+- path: Assets/LifeDeadUI/Scenes/PlayMenu.unity
+>>>>>>> 9473a653a88342dd7b7569dfbc6344086122fb59
   isLoaded: 1
   isActive: 1
