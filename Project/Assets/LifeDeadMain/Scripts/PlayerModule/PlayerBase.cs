@@ -44,27 +44,50 @@ public class PlayerBase : MonoBehaviour
         if (other.gameObject.tag.Equals("Down"))
         {
             m_isJump = false;
-
+            m_ant.SetBool("ant_drop", false);
         }
 
         if (other.gameObject.tag.Equals("Left"))
         {
             m_isJump = false;
-
+            m_ant.SetBool("ant_drop", false);
         }
 
         if (other.gameObject.tag.Equals("Right"))
         {
             m_isJump = false;
-
+            m_ant.SetBool("ant_drop", false);
         }
 
         if (other.gameObject.tag.Equals("Up"))
         {
+            print("up");
             m_isJump = true;
             m_ant.SetBool("ant_drop", false);
         }
     }
+
+    void OnCollisionStay(Collision other)
+    {
+       
+        if (other.gameObject.tag.Equals("Up"))
+        {
+            print("up");
+            m_isJump = true;
+            m_ant.SetBool("ant_drop", false);
+        }
+    }
+
+    void OnCollisionExit(Collision other)
+    {
+        if (other.gameObject.tag.Equals("Up"))
+        {
+           
+            m_isJump = false;
+            m_ant.SetBool("ant_drop", false);
+        }
+    }
+
     #endregion
 
     #region 通用方法
@@ -113,10 +136,7 @@ public class PlayerBase : MonoBehaviour
 	public virtual void PlayerJump ()
 	{
 		if (m_isJump) {
-			m_ant.SetBool ("ant_drop", true);
-			print ("true");
-			//m_ant.SetBool("ant_drop",true);
-			//m_ant.SetTrigger("ant_jump");
+			m_ant.SetBool ("ant_drop", true);						
 			m_rig.velocity += transform.up * 7;
 			m_isJump = false;
 		}
