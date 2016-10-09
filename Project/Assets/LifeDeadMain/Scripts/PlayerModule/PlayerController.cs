@@ -11,112 +11,118 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
-	#region 字段
+    #region 字段
 
-	// 按键参数
-	private float m_hor;
-      
-	// Player预设体
-	public GameObject m_PlayerPrefab;
+    // 按键参数
+    private float m_hor;
 
-	// Player出生位置
-	public Vector3 m_playerStartPos;
+    // Player预设体
+    public GameObject m_PlayerPrefab;
 
-	// Player出生角度
-	public Quaternion m_playerStartRotation;
+    // Player出生位置
+    public Vector3 m_playerStartPos;
 
-	// Player在游戏中的引用
-	private GameObject m_player;
+    // Player出生角度
+    public Quaternion m_playerStartRotation;
 
-	// Player的脚本
-	private PlayerBase m_playerScript;
+    // Player在游戏中的引用
+    private GameObject m_player;
 
-	// 创建角色的名称
-	private string m_playerName;
+    // Player的脚本
+    private PlayerBase m_playerScript;
 
-	#endregion
+    // 创建角色的名称
+    private string m_playerName;
 
-	#region Unity回调
+    #endregion
 
-	void Awake ()
-	{                          
-		// 从上一场景中获取关卡角色数据
-		GetUIData ();
+    #region Unity回调
 
-		// 加载Player资源
-		LoadResourcesPlayer (m_playerName);
+    void Awake()
+    {
+        // 从上一场景中获取关卡角色数据
+        GetUIData();
 
-		// 设置Player出生位置
-		m_playerStartPos = GameObject.Find ("PlayerStartPos").transform.position;
+        // 加载Player资源
+        LoadResourcesPlayer(m_playerName);
 
-		// 设置Player出生角度
-		m_playerStartRotation = new Quaternion (0, 0.7f, 0, 0.7f);
+        // 设置Player出生位置
+        m_playerStartPos = GameObject.Find("PlayerStartPos").transform.position;
 
-		// 创建Player
-		CreatePlayer ();
-        
-                 
-	}
+        // 设置Player出生角度
+        m_playerStartRotation = new Quaternion(0, 0.7f, 0, 0.7f);
 
-	void Start ()
-	{
-		// 获取脚本组件
-		m_playerScript = m_player.GetComponent<PlayerBase> ();       
-	}
+        // 创建Player
+        CreatePlayer();
 
-	
-	void Update ()
-	{
 
-		// 监听Player的动画
-		m_hor = Input.GetAxis ("Horizontal");
+    }
 
-		if (m_hor > 0) {
-			m_playerScript.PlayerMove (m_hor);
-			m_playerScript.RotateRight ();
-		} else if (m_hor < 0) {
-			m_playerScript.PlayerMove (-m_hor);
-			m_playerScript.RotateLeft ();
-		} else {
-			m_playerScript.PlayerMove (m_hor);
-		}
-        
-              
-		if (Input.GetKeyDown (KeyCode.Space)) {
-			m_playerScript.PlayerJump ();
-		}
-	}
+    void Start()
+    {
+        // 获取脚本组件
+        m_playerScript = m_player.GetComponent<PlayerBase>();
+    }
 
-	#endregion
 
-	#region 其他方法
+    void Update()
+    {
 
-	/// <summary>
-	/// 从UI层中读取加载场景数据
-	/// </summary>
-	void GetUIData ()
-	{
-		m_playerName = PlayerPrefs.GetString ("PlayerName");
+        // 监听Player的动画
+        m_hor = Input.GetAxis("Horizontal");
 
-	}
+        if (m_hor > 0)
+        {
+            m_playerScript.PlayerMove(m_hor);
+            m_playerScript.RotateRight();
+        }
+        else if (m_hor < 0)
+        {
+            m_playerScript.PlayerMove(-m_hor);
+            m_playerScript.RotateLeft();
+        }
+        else
+        {
+            m_playerScript.PlayerMove(m_hor);
+        }
 
-	/// <summary>
-	/// 加载Resources中角色
-	/// </summary>
-	void LoadResourcesPlayer (string name)
-	{
-		m_PlayerPrefab = Resources.Load<GameObject> (name);
-	}
 
-	/// <summary>
-	/// 创建对应的角色
-	/// </summary>
-	void CreatePlayer ()
-	{
-		m_player = Instantiate (m_PlayerPrefab, m_playerStartPos, new Quaternion (0, 0.7f, 0, 0.7f)) as GameObject;
-	}
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            m_playerScript.PlayerJump();
+        }
+    }
 
-	#endregion
+    #endregion
+
+    #region 其他方法
+
+    /// <summary>
+    /// 从UI层中读取加载场景数据
+    /// </summary>
+    void GetUIData()
+    {
+        m_playerName = PlayerPrefs.GetString("PlayerName");
+
+    }
+
+    /// <summary>
+    /// 加载Resources中角色
+    /// </summary>
+    void LoadResourcesPlayer(string name)
+    {
+        m_PlayerPrefab = Resources.Load<GameObject>(name);
+    }
+
+    /// <summary>
+    /// 创建对应的角色
+    /// </summary>
+    void CreatePlayer()
+    {
+        m_player = Instantiate(m_PlayerPrefab, m_playerStartPos, new Quaternion(0, 0.7f, 0, 0.7f)) as GameObject;
+    }
+
+    #endregion
 }
 
 
