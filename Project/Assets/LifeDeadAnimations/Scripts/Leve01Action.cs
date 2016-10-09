@@ -10,6 +10,7 @@ using UnityEngine;
 using System.Collections;
 using DG.Tweening;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Leve01Action : MonoBehaviour {
 
@@ -23,7 +24,7 @@ public class Leve01Action : MonoBehaviour {
 
     void Awake()
     {
-        m_speed = 0.4f;
+        m_speed = 0.8f;
         m_maskText = GameObject.FindWithTag("MaskText").GetComponent<Text>();
         m_maskBg = GameObject.FindWithTag("MaskBg");
         m_girl = GameObject.FindWithTag("Player");
@@ -73,5 +74,20 @@ public class Leve01Action : MonoBehaviour {
     {
         yield return new WaitForSeconds(1);
         Tweener tweener = m_letterPaper.transform.DOMove(m_letterPaperEndPos.transform.position, 2f);
+        tweener.OnComplete(RebackSelectScene);
     }
+
+    void RebackSelectScene()
+    {
+        StartCoroutine("MyIEnumeratorThree");
+    }
+
+
+    IEnumerator MyIEnumeratorThree()
+    {
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene("SelectCustoms");
+    }
+
+   
 }
