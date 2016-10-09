@@ -110,10 +110,7 @@ public class PlayerBase : MonoBehaviour
     {
         if(m_isJump)
         {
-            m_ant.SetBool("ant_drop",true);
-            print("true");
-            //m_ant.SetBool("ant_drop",true);
-            //m_ant.SetTrigger("ant_jump");
+            m_ant.SetBool("ant_drop",true);           
             m_rig.velocity += transform.up * 7;
             m_isJump = false;
         }

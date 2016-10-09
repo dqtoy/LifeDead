@@ -96,7 +96,7 @@ public class PlayerController : MonoBehaviour
 	/// </summary>
 	void GetUIData ()
 	{
-		m_playerName = PlayerPrefs.GetString ("name");
+		m_playerName = PlayerPrefs.GetString ("PlayerName");
 
 	}
 
