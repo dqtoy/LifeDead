@@ -10,6 +10,8 @@ public class SelectCustoms : MonoBehaviour
     private Button m_buttonRight;
     private Button m_buttonLeft;
 
+    private string[] m_levelName;
+
     private  Vector3 LeftPos=new Vector2(-300,300);
     private Vector3 RightPos=new Vector2(1000,300);
     private Vector3 CenterPos=new Vector2(360,300);
@@ -17,18 +19,20 @@ public class SelectCustoms : MonoBehaviour
    public  int m_levelSum;
 
     private Button[] m_switchButton;
+    #region 初始化
     void InitImageArray()
     {
         imageArray[0].transform.position = CenterPos;
 
-        for (int i = 1; i < 5; i++)
+        for (int i = 1; i < 11; i++)
         {
             imageArray[i].rectTransform.position = RightPos;
         }
     }
-
+    #endregion
     void Awake()
     {
+        m_levelName = new string[m_levelSum];
 
         imageArray = new Image[m_levelSum];
         m_switchButton = new Button[m_levelSum];
@@ -37,11 +41,11 @@ public class SelectCustoms : MonoBehaviour
             imageArray[i]= GameObject.Find("customs"+i).GetComponent<Image>();
             m_switchButton[i]=GameObject.Find("customs" + i).GetComponent<Button>();
             m_switchButton[i].onClick.AddListener(SwitchLevel);
-
         }
 
         index = 0;
         InitImageArray();
+        SetLevleName();
         #region 点击事件注册
         m_buttonRight = GameObject.Find("ButtonRight").GetComponent<Button>();
         m_buttonRight.onClick.AddListener(RightButtonAction);
@@ -79,9 +83,28 @@ public class SelectCustoms : MonoBehaviour
         Tweener RightMoveCenter = imageArray[index].transform.DOMove(CenterPos, 0.5f);
     }
     #endregion
+    #region 切换关卡
     public void SwitchLevel()
     {
-        SceneManager.LoadScene(2);
+        PlayerPrefs.SetString("CurrentLevel", m_levelName[index]);
+        SceneManager.LoadScene(2); print(index);
     }
+    #endregion
+    #region 设置关卡名称
+    void SetLevleName()
+    {
+        m_levelName[0] = "Level01Animation";
+        m_levelName[1] = "Mission1";
+        m_levelName[2] = "Mission2";
+        m_levelName[3] = "Mission3";
+        m_levelName[4] = "Mission4";
+        m_levelName[4] = "Mission5";
+        m_levelName[6] = "Mission6";
+        m_levelName[7] = "Mission7";
+        m_levelName[8] = "Mission8";
+        m_levelName[9] = "Mission9";
+        m_levelName[10] = "Mission10";
+    }
+    #endregion
 
 }

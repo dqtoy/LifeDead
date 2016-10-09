@@ -13,25 +13,28 @@ public class PlayerBase : MonoBehaviour
 {
     #region 字段
     // 移动速度
-    protected float m_speed = 5;
+    protected float m_speed = 3;
    
     // 刚体组件
     private Rigidbody m_rig;
 
     // 动画组件
     private Animator m_ant;
+
+    // 是否正在跳
+    private bool m_isJump;
     #endregion
 
     #region Unity回调
     void Awake()
-    {
+    {       
         m_rig = GetComponent<Rigidbody>();
         m_ant = GetComponent<Animator>();
     }
 
     void Start()
     {
-        
+        m_isJump = false;
     }
     #endregion
 
@@ -78,8 +81,16 @@ public class PlayerBase : MonoBehaviour
     /// </summary>
     public virtual void PlayerJump()
     {
-        m_ant.SetTrigger("ant_jump");
-        m_rig.velocity += transform.up * 5;
+        if(true)
+        {
+            //m_ant.SetBool("ant_drop",true);
+            print("true");
+            //m_ant.SetBool("ant_drop",true);
+            //m_ant.SetTrigger("ant_jump");
+            m_rig.velocity += transform.up * 7;
+            m_isJump = false;
+        }
+        
     }    
 
     /// <summary>
@@ -113,6 +124,23 @@ public class PlayerBase : MonoBehaviour
     {
 
     }
+
+    //void OnCollisionEnter(Collision other)
+    //{
+    //    if(other.gameObject.tag.Equals("Down"))
+    //    {
+           
+
+    //    }
+
+    //    if (other.gameObject.tag.Equals("Up"))
+    //    {
+    //        m_isJump = true;
+    //        m_ant.SetBool("ant_drop", false);
+    //    }
+        
+        
+    //}
     #endregion
 }
 

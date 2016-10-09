@@ -46,20 +46,22 @@ public class PlayerController : MonoBehaviour
         // 加载Player资源
         LoadResourcesPlayer(m_playerName);
 
+        // 设置Player出生位置
+        m_playerStartPos = GameObject.Find("PlayerStartPos").transform.position;
+
+        // 设置Player出生角度
+        m_playerStartRotation = new Quaternion(0, 0.7f, 0, 0.7f);
+
         // 创建Player
         CreatePlayer();
         
-        // 设置Player出生位置
-        m_playerStartPos = Vector3.zero;
-
-        // 设置Player出生角度
-        m_playerStartRotation = new Quaternion(0, 0.7f, 0, 0.7f);             
+                 
     }
 
 	void Start ()
     {
         // 获取脚本组件
-        m_playerScript = m_player.GetComponent<PlayerBase>();
+        m_playerScript = m_player.GetComponent<PlayerBase>();       
     }
 	
 	

@@ -25,10 +25,7 @@ public class StartMenuController : MonoBehaviour {
 
         m_musicView = GameObject.Find("Musicview").GetComponent<RectTransform>();
     }
-	
-	void Update () {
-	
-	}
+
     #region 开始游戏按钮
     public void StartButtonAction()
     {
