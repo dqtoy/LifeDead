@@ -87,7 +87,8 @@ public class SelectCustoms : MonoBehaviour
     public void SwitchLevel()
     {
         PlayerPrefs.SetString("CurrentLevel", m_levelName[index]);
-        SceneManager.LoadScene(2); print(index);
+        SceneManager.LoadScene(2);
+        //print(index);
     }
     #endregion
     #region 设置关卡名称

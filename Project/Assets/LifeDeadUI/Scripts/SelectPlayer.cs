@@ -18,6 +18,7 @@ public class SelectPlayer : MonoBehaviour
     private Vector2 DownPos = new Vector2(-0.5f, -10);
     private Vector2 CenterPos = new Vector2(-0.5f, 0);
     private int index;
+    
     #region 初始化
     void Init()
     {
@@ -47,13 +48,13 @@ public class SelectPlayer : MonoBehaviour
        
         for (int i = 0; i < m_Players.Length; i++)
         {
-            m_Players[0] = GameObject.Find("Alien");
-            m_Players[1] = GameObject.Find("Knight");
-            m_Players[2] = GameObject.Find("Ninja");
-            m_Players[3] = GameObject.Find("Girl");
-            m_Players[4] = GameObject.Find("Mummy");
-            m_Players[5] = GameObject.Find("Wizard");
-            m_Players[6] = GameObject.Find("EyeMonter");
+            //m_Players[0] = GameObject.Find("Alien");
+            m_Players[0] = GameObject.Find("Knight");
+            m_Players[1] = GameObject.Find("Ninja");
+            m_Players[2] = GameObject.Find("Girl");
+            m_Players[3] = GameObject.Find("Mummy");
+            m_Players[4] = GameObject.Find("Wizard");
+            m_Players[5] = GameObject.Find("EyeMonter");
         }
         index = 0;
         Init();
@@ -92,7 +93,6 @@ public class SelectPlayer : MonoBehaviour
     public void StartButtonAction()
     {
         PlayerPrefs.SetString("PlayerName", GetPlayerName(index));
-
         SceneManager.LoadScene(PlayerPrefs.GetString("CurrentLevel"));
     }
     #endregion
@@ -101,23 +101,24 @@ public class SelectPlayer : MonoBehaviour
     {
         switch (index)
         {
+            
             case 0:
-                return "Alien";
-            case 1:
                 return "Knight";
-            case 2:
+            case 1:
                 return "Ninja";
-            case 3:
+            case 2:
                 return "Girl";
-            case 4:
+            case 3:
                 return "Mummy";
-            case 5:
+            case 4:
                 return "Wizard";
-            case 6:
+            case 5:
                 return "EyeMonter";
         }
         return null;
     }
+  
+    
     #endregion
 
 }
