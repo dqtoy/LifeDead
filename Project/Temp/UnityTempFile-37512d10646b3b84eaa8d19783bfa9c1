@@ -1,31 +1,21 @@
 -debug
 -target:library
 -nowarn:0169
--out:Temp/Assembly-CSharp-Editor.dll
+-out:Temp/Assembly-CSharp.dll
 -r:"C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll"
--r:"C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll"
--r:Library/ScriptAssemblies/Assembly-CSharp.dll
--r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/Editor/UnityEditor.Advertisements.dll"
--r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/EditorTestsRunner/Editor/nunit.framework.dll"
--r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/EditorTestsRunner/Editor/UnityEditor.EditorTestsRunner.dll"
 -r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll"
--r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/Editor/UnityEditor.UI.dll"
 -r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll"
--r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/Editor/UnityEditor.Networking.dll"
--r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TreeEditor/Editor/UnityEditor.TreeEditor.dll"
 -r:Assets/Demigiant/DemiLib/Core/DemiLib.dll
--r:Assets/Demigiant/DemiLib/Core/Editor/DemiEditor.dll
 -r:Assets/Demigiant/DOTween/DOTween.dll
 -r:Assets/Demigiant/DOTween/DOTween43.dll
 -r:Assets/Demigiant/DOTween/DOTween46.dll
 -r:Assets/Demigiant/DOTween/DOTween50.dll
--r:Assets/Demigiant/DOTween/Editor/DOTweenEditor.dll
 -r:Assets/Demigiant/DOTweenPro/DOTweenPro.dll
--r:Assets/Demigiant/DOTweenPro/Editor/DOTweenProEditor.dll
 -r:Assets/LifeDeadMain/Plugins/LitJson.dll
--r:"C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll"
--r:"C:/Program Files/Unity/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll"
--r:"C:/Program Files/Unity/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll"
+-r:"C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll"
+-r:"C:/Program Files/Unity/Editor/Data\Managed/Mono.Cecil.dll"
+-r:"C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll"
+-r:"C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport\UnityEditor.iOS.Extensions.Common.dll"
 -define:UNITY_5_3_OR_NEWER
 -define:UNITY_5_3_4
 -define:UNITY_5_3
@@ -96,7 +86,27 @@
 -define:UNITY_EDITOR_64
 -define:UNITY_EDITOR_WIN
 -define:UNITY_TEAM_LICENSE
--define:ENABLE_DUCK_TYPING
-Assets/Demigiant/DOTweenPro/Editor/DOTweenAnimationInspector.cs
--r:"C:\Program Files\Unity\Editor\Data\Mono\lib\mono\2.0\System.Runtime.Serialization.dll"
--r:"C:\Program Files\Unity\Editor\Data\Mono\lib\mono\2.0\System.Xml.Linq.dll"
+Assets/Demigiant/DOTweenPro/DOTweenAnimation.cs
+Assets/LifeDeadAnimations/Scripts/CameraMove01.cs
+Assets/LifeDeadAnimations/Scripts/Leve01Action.cs
+Assets/LifeDeadMain/Scripts/AudioModule/AudioController.cs
+Assets/LifeDeadMain/Scripts/AudioModule/PlayerAudioAbstract.cs
+Assets/LifeDeadMain/Scripts/AudioModule/SceneAudioAbstract.cs
+Assets/LifeDeadMain/Scripts/CameraModule/CameraLevelScript.cs
+Assets/LifeDeadMain/Scripts/DataModule/DataController.cs
+Assets/LifeDeadMain/Scripts/PlayerModule/EyeMonsterScript.cs
+Assets/LifeDeadMain/Scripts/PlayerModule/GirlScript.cs
+Assets/LifeDeadMain/Scripts/PlayerModule/KnightScript.cs
+Assets/LifeDeadMain/Scripts/PlayerModule/MummyScript.cs
+Assets/LifeDeadMain/Scripts/PlayerModule/NinjaScript.cs
+Assets/LifeDeadMain/Scripts/PlayerModule/PlayerBase.cs
+Assets/LifeDeadMain/Scripts/PlayerModule/PlayerController.cs
+Assets/LifeDeadMain/Scripts/PlayerModule/WizardScript.cs
+Assets/LifeDeadMain/Scripts/Test.cs
+Assets/LifeDeadMain/Scripts/Tools/Tags.cs
+Assets/LifeDeadUI/Scripts/PlayerMenuController.cs
+Assets/LifeDeadUI/Scripts/SelectCustoms.cs
+Assets/LifeDeadUI/Scripts/SelectPlayer.cs
+Assets/LifeDeadUI/Scripts/StartMenuController.cs
+-r:"C:\Program Files\Unity\Editor\Data\Mono\lib\mono\unity\System.Runtime.Serialization.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Mono\lib\mono\unity\System.Xml.Linq.dll"

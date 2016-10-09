@@ -36,6 +36,33 @@ public class PlayerBase : MonoBehaviour
     {
         m_isJump = false;
     }
+
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag.Equals("Down"))
+        {
+            m_isJump = false;
+
+        }
+
+        if (other.gameObject.tag.Equals("Left"))
+        {
+            m_isJump = false;
+
+        }
+
+        if (other.gameObject.tag.Equals("Right"))
+        {
+            m_isJump = false;
+
+        }
+
+        if (other.gameObject.tag.Equals("Up"))
+        {
+            m_isJump = true;
+            m_ant.SetBool("ant_drop", false);
+        }
+    }
     #endregion
 
     #region 通用方法
@@ -81,9 +108,9 @@ public class PlayerBase : MonoBehaviour
     /// </summary>
     public virtual void PlayerJump()
     {
-        if(true)
+        if(m_isJump)
         {
-            //m_ant.SetBool("ant_drop",true);
+            m_ant.SetBool("ant_drop",true);
             print("true");
             //m_ant.SetBool("ant_drop",true);
             //m_ant.SetTrigger("ant_jump");
@@ -124,23 +151,6 @@ public class PlayerBase : MonoBehaviour
     {
 
     }
-
-    //void OnCollisionEnter(Collision other)
-    //{
-    //    if(other.gameObject.tag.Equals("Down"))
-    //    {
-           
-
-    //    }
-
-    //    if (other.gameObject.tag.Equals("Up"))
-    //    {
-    //        m_isJump = true;
-    //        m_ant.SetBool("ant_drop", false);
-    //    }
-        
-        
-    //}
     #endregion
 }
 

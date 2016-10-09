@@ -13,6 +13,9 @@
 -r:Assets/Demigiant/DOTweenPro/DOTweenPro.dll
 -r:Assets/LifeDeadMain/Plugins/LitJson.dll
 -r:"C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll"
+-r:"C:/Program Files/Unity/Editor/Data\Managed/Mono.Cecil.dll"
+-r:"C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll"
+-r:"C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport\UnityEditor.iOS.Extensions.Common.dll"
 -define:UNITY_5_3_OR_NEWER
 -define:UNITY_5_3_4
 -define:UNITY_5_3
@@ -89,6 +92,7 @@ Assets/LifeDeadAnimations/Scripts/Leve01Action.cs
 Assets/LifeDeadMain/Scripts/AudioModule/AudioController.cs
 Assets/LifeDeadMain/Scripts/AudioModule/PlayerAudioAbstract.cs
 Assets/LifeDeadMain/Scripts/AudioModule/SceneAudioAbstract.cs
+Assets/LifeDeadMain/Scripts/CameraModule/CameraLevelScript.cs
 Assets/LifeDeadMain/Scripts/DataModule/DataController.cs
 Assets/LifeDeadMain/Scripts/PlayerModule/EyeMonsterScript.cs
 Assets/LifeDeadMain/Scripts/PlayerModule/GirlScript.cs

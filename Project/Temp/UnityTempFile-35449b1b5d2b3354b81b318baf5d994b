@@ -92,6 +92,7 @@ Assets/LifeDeadAnimations/Scripts/Leve01Action.cs
 Assets/LifeDeadMain/Scripts/AudioModule/AudioController.cs
 Assets/LifeDeadMain/Scripts/AudioModule/PlayerAudioAbstract.cs
 Assets/LifeDeadMain/Scripts/AudioModule/SceneAudioAbstract.cs
+Assets/LifeDeadMain/Scripts/CameraModule/CameraLevelScript.cs
 Assets/LifeDeadMain/Scripts/DataModule/DataController.cs
 Assets/LifeDeadMain/Scripts/PlayerModule/EyeMonsterScript.cs
 Assets/LifeDeadMain/Scripts/PlayerModule/GirlScript.cs
