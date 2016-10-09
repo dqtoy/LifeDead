@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 
 public class SelectPlayer : MonoBehaviour
 {
-
     private Button m_upButton;
     private Button m_downButton;
     private Button m_startButton;
@@ -19,6 +18,7 @@ public class SelectPlayer : MonoBehaviour
     private Vector2 DownPos = new Vector2(-0.5f, -10);
     private Vector2 CenterPos = new Vector2(-0.5f, 0);
     private int index;
+    #region 初始化
     void Init()
     {
         m_Players[0].transform.position = CenterPos;
@@ -27,6 +27,8 @@ public class SelectPlayer : MonoBehaviour
             m_Players[i].transform.position = UpPos;
         }
     }
+    #endregion
+
     void Awake()
     {
         #region Button按钮注册事件
@@ -57,13 +59,6 @@ public class SelectPlayer : MonoBehaviour
         Init();
     }
 
-
-    void Update()
-    {
-
-        
-        
-    }
     #region 左键点击事件
     public void UpButtonAction()
     {
@@ -96,9 +91,33 @@ public class SelectPlayer : MonoBehaviour
     #region 开始按钮点击事件
     public void StartButtonAction()
     {
-        SceneManager.LoadScene(3);
+        PlayerPrefs.SetString("PlayerName", GetPlayerName(index));
+
+        SceneManager.LoadScene(PlayerPrefs.GetString("CurrentLevel"));
     }
     #endregion
-
+    #region 获取玩家名字
+    public string GetPlayerName(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                return "Alien";
+            case 1:
+                return "Knight";
+            case 2:
+                return "Ninja";
+            case 3:
+                return "Girl";
+            case 4:
+                return "Mummy";
+            case 5:
+                return "Wizard";
+            case 6:
+                return "EyeMonter";
+        }
+        return null;
+    }
+    #endregion
 
 }
