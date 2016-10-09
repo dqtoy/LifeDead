@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/LifeDeadLevel/Scenes/Mission1.unity
+- path: Assets/LifeDeadAnimations/Level01Animation.unity
   isLoaded: 1
   isActive: 1
