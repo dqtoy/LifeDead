@@ -13,6 +13,9 @@
 -r:Assets/Demigiant/DOTweenPro/DOTweenPro.dll
 -r:Assets/LifeDeadMain/Plugins/LitJson.dll
 -r:"C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll"
+-r:"C:/Program Files/Unity/Editor/Data\Managed/Mono.Cecil.dll"
+-r:"C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll"
+-r:"C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport\UnityEditor.iOS.Extensions.Common.dll"
 -define:UNITY_5_3_OR_NEWER
 -define:UNITY_5_3_4
 -define:UNITY_5_3
@@ -101,6 +104,7 @@ Assets/LifeDeadMain/Scripts/PlayerModule/PlayerController.cs
 Assets/LifeDeadMain/Scripts/PlayerModule/WizardScript.cs
 Assets/LifeDeadMain/Scripts/Test.cs
 Assets/LifeDeadMain/Scripts/Tools/Tags.cs
+Assets/LifeDeadUI/Scripts/LoadHead.cs
 Assets/LifeDeadUI/Scripts/PlayerMenuController.cs
 Assets/LifeDeadUI/Scripts/SelectCustoms.cs
 Assets/LifeDeadUI/Scripts/SelectPlayer.cs

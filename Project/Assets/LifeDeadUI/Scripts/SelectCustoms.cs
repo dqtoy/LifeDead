@@ -12,11 +12,11 @@ public class SelectCustoms : MonoBehaviour
 
     private string[] m_levelName;
 
-    private  Vector3 LeftPos=new Vector2(-300,300);
-    private Vector3 RightPos=new Vector2(1000,300);
-    private Vector3 CenterPos=new Vector2(360,300);
-   private int index;
-   public  int m_levelSum;
+    private Vector2 LeftPos = new Vector2(-650, 300);
+    private Vector2 RightPos = new Vector2(1600, 300);
+    private Vector2 CenterPos = new Vector2(400, 300);
+    private int index;
+    public int m_levelSum;
 
     private Button[] m_switchButton;
     #region 初始化
@@ -24,10 +24,10 @@ public class SelectCustoms : MonoBehaviour
     {
         imageArray[0].transform.position = CenterPos;
 
-        for (int i = 1; i < 11; i++)
-        {
-            imageArray[i].rectTransform.position = RightPos;
-        }
+        //for (int i = 1; i < 11; i++)
+        //{
+        //    //imageArray[i].rectTransform.position = RightPos;
+        //}
     }
     #endregion
     void Awake()
@@ -36,10 +36,10 @@ public class SelectCustoms : MonoBehaviour
 
         imageArray = new Image[m_levelSum];
         m_switchButton = new Button[m_levelSum];
-        for (int i = 0; i < m_levelSum;i++)
+        for (int i = 0; i < m_levelSum; i++)
         {
-            imageArray[i]= GameObject.Find("customs"+i).GetComponent<Image>();
-            m_switchButton[i]=GameObject.Find("customs" + i).GetComponent<Button>();
+            imageArray[i] = GameObject.Find("customs" + i).GetComponent<Image>();
+            m_switchButton[i] = GameObject.Find("customs" + i).GetComponent<Button>();
             m_switchButton[i].onClick.AddListener(SwitchLevel);
         }
 

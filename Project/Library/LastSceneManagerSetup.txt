@@ -1,8 +1,4 @@
 sceneSetups:
-<<<<<<< HEAD
 - path: Assets/LifeDeadUI/Scenes/StartMenu.unity
-=======
-- path: Assets/LifeDeadLevel/Scenes/Mission1.unity
->>>>>>> 7fd6234314b9439821b1b7470a848bec000acb3a
   isLoaded: 1
   isActive: 1
