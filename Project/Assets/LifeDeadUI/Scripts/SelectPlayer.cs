@@ -18,7 +18,7 @@ public class SelectPlayer : MonoBehaviour
     private Vector2 DownPos = new Vector2(-0.5f, -10);
     private Vector2 CenterPos = new Vector2(-0.5f, 0);
     private int index;
-    
+
     #region 初始化
     void Init()
     {
@@ -45,7 +45,7 @@ public class SelectPlayer : MonoBehaviour
         m_introText = GameObject.Find("IntroText").GetComponent<Text>();
 
         m_Players = new GameObject[m_Players.Length];
-       
+
         for (int i = 0; i < m_Players.Length; i++)
         {
             //m_Players[0] = GameObject.Find("Alien");
@@ -101,7 +101,7 @@ public class SelectPlayer : MonoBehaviour
     {
         switch (index)
         {
-            
+
             case 0:
                 return "Knight";
             case 1:
@@ -117,8 +117,8 @@ public class SelectPlayer : MonoBehaviour
         }
         return null;
     }
-  
-    
+
+
     #endregion
 
 }
