@@ -9,6 +9,7 @@ public class LoadHead : MonoBehaviour
     private string m_playerName;
     private Sprite m_playerHeadSprite;
 
+
     void Awake()
     {
         // 获取名字
