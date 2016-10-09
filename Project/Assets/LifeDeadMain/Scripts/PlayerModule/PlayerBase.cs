@@ -44,19 +44,19 @@ public class PlayerBase : MonoBehaviour
         if (other.gameObject.tag.Equals("Down"))
         {
             m_isJump = false;
-
+            m_ant.SetBool("ant_drop", false);
         }
 
         if (other.gameObject.tag.Equals("Left"))
         {
             m_isJump = false;
-
+            m_ant.SetBool("ant_drop", false);
         }
 
         if (other.gameObject.tag.Equals("Right"))
         {
             m_isJump = false;
-
+            m_ant.SetBool("ant_drop", false);
         }
 
         if (other.gameObject.tag.Equals("Up"))
@@ -113,10 +113,7 @@ public class PlayerBase : MonoBehaviour
 	public virtual void PlayerJump ()
 	{
 		if (m_isJump) {
-			m_ant.SetBool ("ant_drop", true);
-			print ("true");
-			//m_ant.SetBool("ant_drop",true);
-			//m_ant.SetTrigger("ant_jump");
+			m_ant.SetBool ("ant_drop", true);						
 			m_rig.velocity += transform.up * 7;
 			m_isJump = false;
 		}
