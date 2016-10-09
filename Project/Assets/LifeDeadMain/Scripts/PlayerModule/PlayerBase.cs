@@ -11,10 +11,12 @@ using System.Collections;
 
 public class PlayerBase : MonoBehaviour
 {
-    #region 字段
-    // 移动速度
-    protected float m_speed = 3;
+	#region 字段
+
+	// 移动速度
+	protected float m_speed = 3;
    
+
     // 刚体组件
     private Rigidbody m_rig;
 
@@ -102,53 +104,59 @@ public class PlayerBase : MonoBehaviour
 
     #endregion
 
-    #region 虚方法
-    /// <summary>
-    /// 跳跃
-    /// </summary>
-    public virtual void PlayerJump()
-    {
-        if(m_isJump)
-        {
-            m_ant.SetBool("ant_drop",true);           
-            m_rig.velocity += transform.up * 7;
-            m_isJump = false;
-        }
+
+	#region 虚方法
+
+	/// <summary>
+	/// 跳跃
+	/// </summary>
+	public virtual void PlayerJump ()
+	{
+		if (m_isJump) {
+			m_ant.SetBool ("ant_drop", true);
+			print ("true");
+			//m_ant.SetBool("ant_drop",true);
+			//m_ant.SetTrigger("ant_jump");
+			m_rig.velocity += transform.up * 7;
+			m_isJump = false;
+		}
+
         
-    }    
+	}
 
-    /// <summary>
-    /// 长者隐身
-    /// </summary>
-    public virtual void Hide()
-    {
+	/// <summary>
+	/// 长者隐身
+	/// </summary>
+	public virtual void Hide ()
+	{
 
-    } 
+	}
 
-    /// <summary>
-    /// 武士扔飞刀
-    /// </summary>
-    public virtual void FlyKnife()
-    {
+	/// <summary>
+	/// 武士扔飞刀
+	/// </summary>
+	public virtual void FlyKnife ()
+	{
 
-    }
+	}
 
-    /// <summary>
-    /// 独眼怪发激光
-    /// </summary>
-    public virtual void ShootLase()
-    {
+	/// <summary>
+	/// 独眼怪发激光
+	/// </summary>
+	public virtual void ShootLase ()
+	{
 
-    }
+	}
 
-    /// <summary>
-    /// 木乃伊复活
-    /// </summary>
-    public virtual void Rebirth()
-    {
+	/// <summary>
+	/// 木乃伊复活
+	/// </summary>
+	public virtual void Rebirth ()
+	{
 
-    }
-    #endregion
+	}
+
+	#endregion
 }
 
 
