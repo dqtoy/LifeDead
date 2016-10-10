@@ -8,32 +8,23 @@
 
 using UnityEngine;
 using System.Collections;
-using UnityEngine.SceneManagement;
 
-public class DoorWayScript : MonoBehaviour
+public class PumpkinScript : MonoBehaviour
 {
-
-	
-	void Start ()
-    {
-	
-	}
-
-
+    public GameObject m_moveRockLeft;
+    public GameObject m_moveRockRight;
+		
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag.Equals("Player"))
         {
-
-            StartCoroutine("GoToSecletScene");
-            
+            ShowMoveRock();
+            Destroy(this.gameObject, 0.2f);
         }
     }
 
-    IEnumerator GoToSecletScene()
+    void ShowMoveRock()
     {
-        yield return new WaitForSeconds(2);
-
-        SceneManager.LoadScene("SelectCustoms");
+        m_moveRockLeft.SetActive(true);       
     }
 }

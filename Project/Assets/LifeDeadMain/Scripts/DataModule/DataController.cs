@@ -10,6 +10,7 @@ using UnityEngine;
 using LitJson;
 using System.IO;
 using System.Text;
+using System;
 
 
 public class DataController
@@ -101,7 +102,7 @@ public class DataController
 		if (file != null) {
 			file.Close ();
 		}
-	}
+	}  
 }
 
 
