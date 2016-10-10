@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/LifeDeadUI/Scenes/SelectCustoms.unity
+- path: Assets/LifeDeadLevel/Scenes/Mission3.unity
   isLoaded: 1
   isActive: 1

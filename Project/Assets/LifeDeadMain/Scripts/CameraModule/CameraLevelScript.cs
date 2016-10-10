@@ -40,9 +40,10 @@ public class CameraLevelScript : MonoBehaviour
 	void Update ()
     {
         m_playerPos = m_player.transform.position;
-               
+
         if (m_playerPos.x < m_cameraEndPos.x && m_playerPos.x > m_cameraStartPos.x)
         {
+			
             m_isCameraMove = true;
            
         }
