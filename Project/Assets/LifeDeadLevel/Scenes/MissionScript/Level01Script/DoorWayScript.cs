@@ -52,6 +52,8 @@ public class DoorWayScript : MonoBehaviour
                   
         yield return new WaitForSeconds(2);
 
+        m_dataController.LoadJsonData();
+
         SceneManager.LoadScene("SelectCustoms");
     }
 
