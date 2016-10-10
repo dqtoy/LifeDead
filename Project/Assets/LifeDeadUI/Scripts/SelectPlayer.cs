@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class SelectPlayer : MonoBehaviour
 {
+    #region 字段
     private Button m_upButton;
     private Button m_downButton;
     private Button m_startButton;
@@ -18,19 +19,17 @@ public class SelectPlayer : MonoBehaviour
     private Vector2 DownPos = new Vector2(-0.5f, -10);
     private Vector2 CenterPos = new Vector2(-0.5f, 0);
     private int index;
-
-    #region 初始化
-    void Init()
-    {
-        m_Players[0].transform.position = CenterPos;
-        for (int i = 1; i < m_Players.Length; i++)
-        {
-            m_Players[i].transform.position = UpPos;
-        }
-    }
     #endregion
 
+
+    #region 初始化
+  
     void Awake()
+    {
+        index = 0;
+        m_Players = new GameObject[m_Players.Length];
+    }
+    void Start()
     {
         #region Button按钮注册事件
         m_upButton = GameObject.Find("TurnLeftButton").GetComponent<Button>();
@@ -44,11 +43,8 @@ public class SelectPlayer : MonoBehaviour
         #endregion
         m_introText = GameObject.Find("IntroText").GetComponent<Text>();
 
-        m_Players = new GameObject[m_Players.Length];
-
         for (int i = 0; i < m_Players.Length; i++)
         {
-            //m_Players[0] = GameObject.Find("Alien");
             m_Players[0] = GameObject.Find("Knight");
             m_Players[1] = GameObject.Find("Ninja");
             m_Players[2] = GameObject.Find("Girl");
@@ -56,9 +52,16 @@ public class SelectPlayer : MonoBehaviour
             m_Players[4] = GameObject.Find("Wizard");
             m_Players[5] = GameObject.Find("EyeMonter");
         }
-        index = 0;
-        Init();
+        
+        for (int i = 1; i < m_Players.Length; i++)
+        {
+            m_Players[i].transform.position = UpPos;
+        }
+        m_Players[0].transform.position = CenterPos;
     }
+    #endregion
+
+
 
     #region 左键点击事件
     public void UpButtonAction()
@@ -94,6 +97,8 @@ public class SelectPlayer : MonoBehaviour
     {
         PlayerPrefs.SetString("PlayerName", GetPlayerName(index));
         SceneManager.LoadScene(PlayerPrefs.GetString("CurrentLevel"));
+
+
     }
     #endregion
     #region 获取玩家名字

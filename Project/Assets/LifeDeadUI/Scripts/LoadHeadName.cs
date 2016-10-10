@@ -9,11 +9,8 @@ public class LoadHeadName : MonoBehaviour {
     void Start () {
         m_headNameText = GameObject.Find("HeadNameText").GetComponent<Text>();
         m_playerName = PlayerPrefs.GetString("PlayerName");
-        
-
     }
-	
-	
+
 	void Update () {
         switch (m_playerName)
         {
