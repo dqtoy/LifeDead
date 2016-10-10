@@ -21,10 +21,12 @@ public class Leve01Action : MonoBehaviour {
     private GameObject m_letterPaperEndPos;
     private float m_speed;
     private float m_letterX;
+    private bool m_isMove;
 
     void Awake()
     {
         m_speed = 0.8f;
+        m_isMove = false;
         m_maskText = GameObject.FindWithTag("MaskText").GetComponent<Text>();
         m_maskBg = GameObject.FindWithTag("MaskBg");
         m_girl = GameObject.FindWithTag("Player");
@@ -56,15 +58,22 @@ public class Leve01Action : MonoBehaviour {
     IEnumerator MyIEnumerator()
     {
         yield return new WaitForSeconds(1);
-        m_girl.GetComponent<GirlScript>().PlayerMove(m_speed);       
+        m_isMove = true;
     }
 
 
     void Update()
-    {      
+    {
+        
+        if(m_isMove)
+        {
+            m_girl.GetComponent<GirlScript>().PlayerMove(m_speed);
+        }
+
         if (Mathf.Abs(m_letterX-m_girl.transform.position.x)<1)
         {
             m_girl.GetComponent<GirlScript>().PlayerMove(0);
+            m_isMove = false;
             StartCoroutine("MyIEnumeratorTwo");
         }
     }
