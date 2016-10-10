@@ -60,19 +60,16 @@ public class PlayerBase : MonoBehaviour
         }
 
         if (other.gameObject.tag.Equals("Up"))
-        {
-            print("up");
+        {            
             m_isJump = true;
             m_ant.SetBool("ant_drop", false);
         }
     }
 
     void OnCollisionStay(Collision other)
-    {
-       
+    {      
         if (other.gameObject.tag.Equals("Up"))
-        {
-            print("up");
+        {          
             m_isJump = true;
             m_ant.SetBool("ant_drop", false);
         }
@@ -81,8 +78,7 @@ public class PlayerBase : MonoBehaviour
     void OnCollisionExit(Collision other)
     {
         if (other.gameObject.tag.Equals("Up"))
-        {
-           
+        {          
             m_isJump = false;
             m_ant.SetBool("ant_drop", false);
         }
@@ -126,7 +122,6 @@ public class PlayerBase : MonoBehaviour
     }
 
     #endregion
-
 
 	#region 虚方法
 
