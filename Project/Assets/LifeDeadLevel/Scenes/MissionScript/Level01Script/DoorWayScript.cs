@@ -62,6 +62,6 @@ public class DoorWayScript : MonoBehaviour
         string strtempn = "n";
         int IndexofN = strLevelName.IndexOf(strtempn);
         int levelNum = Convert.ToInt32(strLevelName.Substring(IndexofN + 1));
-        return levelNum;
+        return levelNum+1;
     }
 }
