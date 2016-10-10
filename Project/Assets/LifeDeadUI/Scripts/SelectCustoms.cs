@@ -5,6 +5,7 @@ using DG.Tweening;
 using UnityEngine.SceneManagement;
 public class SelectCustoms : MonoBehaviour
 {
+    #region 字段
     private Image[] imageArray;
 
     private Button m_buttonRight;
@@ -19,6 +20,14 @@ public class SelectCustoms : MonoBehaviour
     public int m_levelSum;
 
     private Button[] m_switchButton;
+    DataController m_dataController;
+    // 解锁人物数量
+    int m_unLockPlayerCount;
+    // 解锁关卡数量
+    int m_levelCurrentCount;
+    private Image m_lockImage;
+    #endregion
+
     #region 初始化
     void InitImageArray()
     {
@@ -29,23 +38,36 @@ public class SelectCustoms : MonoBehaviour
         //    //imageArray[i].rectTransform.position = RightPos;
         //}
     }
-    #endregion
     void Awake()
     {
         LeftPos = GameObject.Find("LeftPos").GetComponent<RectTransform>();
         RightPos = GameObject.Find("RightPos").GetComponent<RectTransform>();
         CenterPos = GameObject.Find("CenterPos").GetComponent<RectTransform>();
+        m_dataController = DataController.GetDataInstance();
         m_levelName = new string[m_levelSum];
 
         imageArray = new Image[m_levelSum];
         m_switchButton = new Button[m_levelSum];
+        #region 遍历关卡数量，注册关卡点击事件
         for (int i = 0; i < m_levelSum; i++)
         {
             imageArray[i] = GameObject.Find("customs" + i).GetComponent<Image>();
             m_switchButton[i] = GameObject.Find("customs" + i).GetComponent<Button>();
             m_switchButton[i].onClick.AddListener(SwitchLevel);
-        }
 
+        }
+        m_levelCurrentCount = m_dataController.GetlevelCurrent();
+        m_unLockPlayerCount = m_dataController.GetUnLockPlayer();
+
+        for (int i = 0; i < m_levelSum; i++)
+        {
+            if (i <= m_levelCurrentCount)
+            {
+                m_lockImage = imageArray[i].GetComponentsInChildren<Image>()[1];
+                m_lockImage.gameObject.SetActive(false);
+            }
+        }
+        #endregion
         index = 0;
         InitImageArray();
         SetLevleName();
@@ -55,8 +77,9 @@ public class SelectCustoms : MonoBehaviour
         m_buttonLeft = GameObject.Find("ButtonLeft").GetComponent<Button>();
         m_buttonLeft.onClick.AddListener(LeftButtonAction);
         #endregion
-
     }
+    #endregion
+
     #region 向右点击事件
     public void RightButtonAction()
     {
@@ -89,7 +112,7 @@ public class SelectCustoms : MonoBehaviour
     public void SwitchLevel()
     {
         PlayerPrefs.SetString("CurrentLevel", m_levelName[index]);
-
+        
         if(index == 0)
         {
             SceneManager.LoadScene("Level01Animation");
@@ -118,5 +141,6 @@ public class SelectCustoms : MonoBehaviour
         m_levelName[10] = "Mission10";
     }
     #endregion
+
 
 }
