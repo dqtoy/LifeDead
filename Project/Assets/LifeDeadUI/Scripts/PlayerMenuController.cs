@@ -3,7 +3,8 @@ using System.Collections;
 using UnityEngine.UI;
 using DG.Tweening;
 
-public class PlayerMenuController : MonoBehaviour {
+public class PlayerMenuController : MonoBehaviour
+{
     #region 字段
     private Button m_leftButton;
     private Button m_rightButton;
@@ -17,8 +18,8 @@ public class PlayerMenuController : MonoBehaviour {
     private Scrollbar m_countdownBar;
     private RectTransform m_selectBar;
     #endregion
-    #region 初始化
-    void Awake()
+
+    void Start()
     {
         #region 注册点击事件
         m_leftButton = GameObject.Find("LeftButton").GetComponent<Button>();
@@ -48,9 +49,10 @@ public class PlayerMenuController : MonoBehaviour {
         m_countdownBar = GameObject.Find("CountDownBar").GetComponent<Scrollbar>();
         m_selectBar = GameObject.Find("SelectBar").GetComponent<RectTransform>();
     }
-    #endregion
 
-    void Update () {
+
+    void Update()
+    {
 
         StartCoroutine(CountDown());
     }
@@ -83,14 +85,12 @@ public class PlayerMenuController : MonoBehaviour {
     {
         m_selectBar.DOLocalMoveY(0, 0.5f);
         StartCoroutine(StopTime());
-
     }
     #endregion
     #region 继续游戏点击事件
     public void ContinueButtonAction()
     {
         m_selectBar.DOLocalMoveY(600, 0.5f);
-      
     }
     #endregion
     #region 重玩点击事件
@@ -115,10 +115,10 @@ public class PlayerMenuController : MonoBehaviour {
     {
         yield return new WaitForSeconds(0.5f);
         //Time.timeScale = 0;
-        
-       
+
+
     }
-  
+
     #endregion
     #region 当倒计时为0
     public void CountZeroAction()

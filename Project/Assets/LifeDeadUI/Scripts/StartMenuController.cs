@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
-public class StartMenuController : MonoBehaviour {
+public class StartMenuController : MonoBehaviour
+{
     #region 字段
     DataController m_dataController;
     private Button m_startButton;
@@ -15,7 +16,7 @@ public class StartMenuController : MonoBehaviour {
     private Button m_closeButton;
     #endregion
     #region 初始化
-    void Awake()
+    void Start()
     {
         m_startButton = GameObject.Find("StartButton").GetComponent<Button>();
         m_startButton.onClick.AddListener(StartButtonAction);
@@ -38,10 +39,10 @@ public class StartMenuController : MonoBehaviour {
     public void StartButtonAction()
     {
         m_dataController.LoadJsonData();
-       
+
         //m_dataController.
         SceneManager.LoadScene(1);
-        
+
 
     }
     #endregion

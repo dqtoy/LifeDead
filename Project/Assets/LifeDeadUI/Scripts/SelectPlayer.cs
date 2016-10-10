@@ -23,15 +23,13 @@ public class SelectPlayer : MonoBehaviour
 
 
     #region 初始化
-    void Init()
-    {
-        m_Players[0].transform.position = CenterPos;
-        for (int i = 1; i < m_Players.Length; i++)
-        {
-            m_Players[i].transform.position = UpPos;
-        }
-    }
+  
     void Awake()
+    {
+        index = 0;
+        m_Players = new GameObject[m_Players.Length];
+    }
+    void Start()
     {
         #region Button按钮注册事件
         m_upButton = GameObject.Find("TurnLeftButton").GetComponent<Button>();
@@ -45,8 +43,6 @@ public class SelectPlayer : MonoBehaviour
         #endregion
         m_introText = GameObject.Find("IntroText").GetComponent<Text>();
 
-        m_Players = new GameObject[m_Players.Length];
-
         for (int i = 0; i < m_Players.Length; i++)
         {
             m_Players[0] = GameObject.Find("Knight");
@@ -56,8 +52,12 @@ public class SelectPlayer : MonoBehaviour
             m_Players[4] = GameObject.Find("Wizard");
             m_Players[5] = GameObject.Find("EyeMonter");
         }
-        index = 0;
-        Init();
+        
+        for (int i = 1; i < m_Players.Length; i++)
+        {
+            m_Players[i].transform.position = UpPos;
+        }
+        m_Players[0].transform.position = CenterPos;
     }
     #endregion
 

@@ -28,57 +28,52 @@ public class SelectCustoms : MonoBehaviour
     private Image m_lockImage;
     #endregion
 
-    #region 初始化
-    void InitImageArray()
-    {
-        imageArray[0].rectTransform.position = CenterPos.position;
-
-        //for (int i = 1; i < 11; i++)
-        //{
-        //    //imageArray[i].rectTransform.position = RightPos;
-        //}
-    }
     void Awake()
+    {
+        m_dataController = DataController.GetDataInstance();
+        m_dataController.LoadJsonData();
+
+        m_levelCurrentCount = m_dataController.GetlevelCurrent();
+        m_unLockPlayerCount = m_dataController.GetUnLockPlayer();
+
+        m_levelName = new string[m_levelSum];
+        imageArray = new Image[m_levelSum];
+        m_switchButton = new Button[m_levelSum];
+
+        index = 0;
+
+        SetLevleName();
+    }
+    void Start()
     {
         LeftPos = GameObject.Find("LeftPos").GetComponent<RectTransform>();
         RightPos = GameObject.Find("RightPos").GetComponent<RectTransform>();
         CenterPos = GameObject.Find("CenterPos").GetComponent<RectTransform>();
-        m_dataController = DataController.GetDataInstance();
-        m_levelName = new string[m_levelSum];
 
-        imageArray = new Image[m_levelSum];
-        m_switchButton = new Button[m_levelSum];
-        #region 遍历关卡数量，注册关卡点击事件
-        for (int i = 0; i < m_levelSum; i++)
-        {
-            imageArray[i] = GameObject.Find("customs" + i).GetComponent<Image>();
-            m_switchButton[i] = GameObject.Find("customs" + i).GetComponent<Button>();
-            m_switchButton[i].onClick.AddListener(SwitchLevel);
-
-        }
-        m_levelCurrentCount = m_dataController.GetlevelCurrent();
-        m_unLockPlayerCount = m_dataController.GetUnLockPlayer();
-
-        for (int i = 0; i < m_levelSum; i++)
-        {
-            if (i <= m_levelCurrentCount)
-            {
-                m_lockImage = imageArray[i].GetComponentsInChildren<Image>()[1];
-                m_lockImage.gameObject.SetActive(false);
-            }
-        }
-        #endregion
-        index = 0;
-        InitImageArray();
-        SetLevleName();
         #region 点击事件注册
         m_buttonRight = GameObject.Find("ButtonRight").GetComponent<Button>();
         m_buttonRight.onClick.AddListener(RightButtonAction);
         m_buttonLeft = GameObject.Find("ButtonLeft").GetComponent<Button>();
         m_buttonLeft.onClick.AddListener(LeftButtonAction);
         #endregion
+
+        #region 遍历关卡数量，注册关卡点击事件
+        for (int i = 0; i < m_levelSum; i++)
+        {
+            imageArray[i] = GameObject.Find("customs" + i).GetComponent<Image>();
+            m_switchButton[i] = GameObject.Find("customs" + i).GetComponent<Button>();
+            if (i <= m_levelCurrentCount)
+            {
+                m_lockImage = imageArray[i].GetComponentsInChildren<Image>()[1];
+                m_lockImage.gameObject.SetActive(false);
+                m_switchButton[i].onClick.AddListener(SwitchLevel);
+            }
+        }
+        imageArray[0].rectTransform.position = CenterPos.position;
+        #endregion
     }
-    #endregion
+
+
 
     #region 向右点击事件
     public void RightButtonAction()
@@ -112,8 +107,8 @@ public class SelectCustoms : MonoBehaviour
     public void SwitchLevel()
     {
         PlayerPrefs.SetString("CurrentLevel", m_levelName[index]);
-        
-        if(index == 0)
+
+        if (index == 0)
         {
             SceneManager.LoadScene("Level01Animation");
         }
@@ -121,8 +116,8 @@ public class SelectCustoms : MonoBehaviour
         {
             SceneManager.LoadScene(2);
         }
-        
-       
+
+
     }
     #endregion
     #region 设置关卡名称
