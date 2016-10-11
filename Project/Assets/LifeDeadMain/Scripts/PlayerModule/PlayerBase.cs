@@ -24,7 +24,7 @@ public class PlayerBase : MonoBehaviour
     private Animator m_ant;
 
     // 是否正在跳
-    private bool m_isJump;
+	public bool m_isJump;
     #endregion
 
     #region Unity回调
