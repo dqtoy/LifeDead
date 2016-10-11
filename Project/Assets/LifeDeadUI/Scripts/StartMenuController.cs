@@ -9,10 +9,25 @@ public class StartMenuController : MonoBehaviour
 {
     #region 字段
     DataController m_dataController;
+    /// <summary>
+    /// 开始按钮
+    /// </summary>
     private Button m_startButton;
+    /// <summary>
+    /// 音乐按钮
+    /// </summary>
     private Button m_musicButton;
+    /// <summary>
+    /// 结束按钮
+    /// </summary>
     private Button m_endButton;
+    /// <summary>
+    /// 音乐界面
+    /// </summary>
     private RectTransform m_musicView;
+    /// <summary>
+    /// 音乐界面关闭按钮
+    /// </summary>
     private Button m_closeButton;
     #endregion
     #region 初始化
@@ -34,35 +49,38 @@ public class StartMenuController : MonoBehaviour
     }
     #endregion
 
-
-    #region 开始游戏按钮
+    /// <summary>
+    /// 开始游戏事件
+    /// </summary>
     public void StartButtonAction()
     {
-        m_dataController.LoadJsonData();
-
-        //m_dataController.
+        m_dataController.LoadJsonData();       
         SceneManager.LoadScene(1);
-
-
     }
-    #endregion
-    #region 音乐按钮
+
+    /// <summary>
+    ///  音乐事件
+    /// </summary>
     public void MusicButtonAction()
     {
         m_musicView.DOLocalMoveX(0, 0.5f);
     }
-    #endregion
-    #region 结束游戏按钮
+
+    /// <summary>
+    /// 结束游戏事件
+    /// </summary>
     public void EndButtonAction()
     {
         Application.Quit();
     }
-    #endregion
-    #region 关闭界面按钮
+
+    /// <summary>
+    /// 关闭音乐界面事件
+    /// </summary>
     public void CloseButtonAction()
     {
         m_musicView.DOLocalMoveX(-900, 0.5f);
     }
-    #endregion
+  
 
 }

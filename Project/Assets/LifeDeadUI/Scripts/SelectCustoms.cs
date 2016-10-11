@@ -6,23 +6,32 @@ using UnityEngine.SceneManagement;
 public class SelectCustoms : MonoBehaviour
 {
     #region 字段
+    /// <summary>
+    /// 关卡图片数组
+    /// </summary>
     private Image[] imageArray;
-
+    /// <summary>
+    /// 左右点击按钮
+    /// </summary>
     private Button m_buttonRight;
     private Button m_buttonLeft;
-
+    /// <summary>
+    /// 管卡名字数组
+    /// </summary>
     private string[] m_levelName;
-
+    /// <summary>
+    /// 初始位置
+    /// </summary>
     private RectTransform LeftPos;
     private RectTransform RightPos;
     private RectTransform CenterPos;
+
     private int index;
     public int m_levelSum;
 
     private Button[] m_switchButton;
     DataController m_dataController;
-    // 解锁人物数量
-    int m_unLockPlayerCount;
+
     // 解锁关卡数量
     int m_levelCurrentCount;
     private Image m_lockImage;
@@ -30,11 +39,10 @@ public class SelectCustoms : MonoBehaviour
 
     void Awake()
     {
+        // 获取更新数据
         m_dataController = DataController.GetDataInstance();
         m_dataController.LoadJsonData();
-
         m_levelCurrentCount = m_dataController.GetlevelCurrent();
-        m_unLockPlayerCount = m_dataController.GetUnLockPlayer();
 
         m_levelName = new string[m_levelSum];
         imageArray = new Image[m_levelSum];
@@ -44,6 +52,7 @@ public class SelectCustoms : MonoBehaviour
 
         SetLevleName();
     }
+
     void Start()
     {
         LeftPos = GameObject.Find("LeftPos").GetComponent<RectTransform>();
@@ -73,9 +82,9 @@ public class SelectCustoms : MonoBehaviour
         #endregion
     }
 
-
-
-    #region 向右点击事件
+    /// <summary>
+    /// 向右点击事件
+    /// </summary>
     public void RightButtonAction()
     {
         if (index < 1)
@@ -84,12 +93,14 @@ public class SelectCustoms : MonoBehaviour
         }
 
         index--;
-
+        
         Tweener CenterMoveRight = imageArray[index + 1].rectTransform.DOMove(RightPos.position, 0.5f);
         Tweener LeftMoveCenter = imageArray[index].rectTransform.DOMove(CenterPos.position, 0.5f);
     }
-    #endregion
-    #region 向左点击事件
+
+    /// <summary>
+    /// 向左点击事件
+    /// </summary>
     public void LeftButtonAction()
     {
         if (index > imageArray.Length - 2)
@@ -102,8 +113,10 @@ public class SelectCustoms : MonoBehaviour
         Tweener CenterMoveLeft = imageArray[index - 1].rectTransform.DOMove(LeftPos.position, 0.5f);
         Tweener RightMoveCenter = imageArray[index].rectTransform.DOMove(CenterPos.position, 0.5f);
     }
-    #endregion
-    #region 切换关卡
+
+    /// <summary>
+    /// 切换关卡
+    /// </summary>
     public void SwitchLevel()
     {
         PlayerPrefs.SetString("CurrentLevel", m_levelName[index]);
@@ -116,11 +129,11 @@ public class SelectCustoms : MonoBehaviour
         {
             SceneManager.LoadScene(2);
         }
-
-
     }
-    #endregion
-    #region 设置关卡名称
+
+    /// <summary>
+    /// 设置关卡名称
+    /// </summary>
     void SetLevleName()
     {
         m_levelName[0] = "Level01Animation";
@@ -135,7 +148,5 @@ public class SelectCustoms : MonoBehaviour
         m_levelName[9] = "Mission9";
         m_levelName[10] = "Mission10";
     }
-    #endregion
-
 
 }
