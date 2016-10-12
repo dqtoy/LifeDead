@@ -1,5 +1,6 @@
 {
   "PlayerCount": 0,
+<<<<<<< HEAD
   "LevelCurrent": 1,
   "IsPlayStartAnimation": 1,
   "LevelData": [
@@ -85,5 +86,43 @@
       "SumScore": 100
     }
 
+=======
+  "LevelCurrent": 2,
+  "IsPlayStartAnimation": 0,
+  "LevelData": [
+    {
+      "Name": 1,
+      "Time": 0.0,
+      "Score": 0,
+      "StarNum": 0,
+      "SumTime": "60",
+      "SumScore": 100
+    },
+    {
+      "Name": 2,
+      "Time": "5.25",
+      "Score": 0,
+      "StarNum": 0,
+      "SumTime": 60,
+      "SumScore": 100
+    },
+    
+    {
+      "Name": 3,
+      "Time": 5.23,
+      "Score": 0,
+      "StarNum": 0,
+      "SumTime": "60",
+      "SumScore": 100
+    },
+    {
+      "Name": 4,
+      "Time": 5.23,
+      "Score": 0,
+      "StarNum": 0,
+      "SumTime": 60,
+      "SumScore": 100
+    }
+>>>>>>> 8970ceb8e29f030b32f6e1baf735a42f870964d6
   ]
 }

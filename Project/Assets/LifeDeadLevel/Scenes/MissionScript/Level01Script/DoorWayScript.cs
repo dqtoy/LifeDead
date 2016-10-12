@@ -25,13 +25,12 @@ public class DoorWayScript : MonoBehaviour
     public float m_currentTime;
 
     public int m_starCount;
-
+    
 
     void Start()
     {
         m_dataController = DataController.GetDataInstance();
-        m_timeController = GameObject.FindWithTag("TimeController");
-        m_currentTime = m_timeController.GetComponent<TimerController>().m_currentTime;
+        m_timeController = GameObject.FindWithTag("TimeController");       
         m_currentTime = m_timeController.GetComponent<TimeController>().m_currentTime;
     }
 
@@ -45,14 +44,19 @@ public class DoorWayScript : MonoBehaviour
 
     IEnumerator GoToSecletScene()
     {
+
+        m_dataController.LoadLevelData(1);
+
         // 获取所有当前关卡要存储的数据 封装到LevelData类中
         m_starCount = SceneInfo.CalculateInfo(SubstringLevelName(m_sceneName), m_currentTime);
 
+        // 封装用户数据
         LevelData leveData = new LevelData();
         leveData.Name = SubstringLevelName(m_sceneName);
         leveData.Score = SceneInfo.MScore;
         leveData.Time = m_currentTime;
         leveData.StarNum = m_starCount;
+
 
         // 加载本地数据
         m_dataController.LoadJsonData();
@@ -73,6 +77,7 @@ public class DoorWayScript : MonoBehaviour
 
         yield return new WaitForSeconds(2);
        
+        // 场景切换
         SceneManager.LoadScene("SelectCustoms");
     }
 

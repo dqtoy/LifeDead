@@ -38,7 +38,7 @@ public class TimeController : MonoBehaviour
         m_timeSlider = m_timeSliderScript.GetTimeSlider();
         m_timeSlider.maxValue = m_totalTime;
         m_timeSlider.minValue = 0;
-        m_currentTime = 0f;
+        m_currentTime = 0;
     }
 
 

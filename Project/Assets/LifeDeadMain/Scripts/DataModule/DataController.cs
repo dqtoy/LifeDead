@@ -13,7 +13,6 @@ using System.Text;
 using System;
 
 
-public class DataController
 {
     #region 字段
     // 关卡数据Model
@@ -24,6 +23,9 @@ public class DataController
 
     // 自身引用
     private static DataController DataInstance;
+
+    //路径
+    string path = "";
     #endregion
 
     #region 单例基本类
@@ -33,7 +35,12 @@ public class DataController
     private DataController ()
 	{
 		LoadJsonData ();
+        path = "/StreamingAssets/DataJson.json";
+
         m_levelData = new LevelData();
+
+        LoadJsonData ();
+        
     }
 
 	/// <summary>
@@ -107,6 +114,10 @@ public class DataController
     public float GetSumTime(int index)
     {
         return (float)parseDate["LevelData"][index]["SumTime"];
+    {        
+        object o = parseDate["LevelData"].Count;
+                
+        return Convert.ToSingle(o);      
     }
 
     /// <summary>
@@ -127,6 +138,7 @@ public class DataController
         parseDate["IsPlayStartAnimation"] = index;
 
         FileStream file = new FileStream(Application.dataPath + "/StreamingAssets/DataJson.json", FileMode.Create);
+        FileStream file = new FileStream(Application.dataPath + path, FileMode.Create);
         byte[] bts = System.Text.Encoding.UTF8.GetBytes(parseDate.ToJson());
         file.Write(bts, 0, bts.Length);
         if (file != null)
@@ -149,6 +161,15 @@ public class DataController
         m_levelData.Score = (int)parseDate["LevelData"][index]["Score"];
         //object o = parseDate["LevelData"][index]["Time"];
         //m_levelData.Time = Convert.ToSingle(parseDate["LevelData"][index]["Time"]);
+=======
+        m_levelData.Name = (int)parseDate["LevelData"][index]["Name"];      
+        m_levelData.StarNum = (int)parseDate["LevelData"][index]["StarNum"];
+        m_levelData.Score = (int)parseDate["LevelData"][index]["Score"];
+
+        object o = parseDate["LevelData"][index]["Time"];
+        m_levelData.Time = Convert.ToSingle(0);
+       
+>>>>>>> 8970ceb8e29f030b32f6e1baf735a42f870964d6
         return m_levelData;
     }
     #endregion
