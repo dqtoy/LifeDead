@@ -103,10 +103,14 @@ Assets/LifeDeadMain/Scripts/AudioModule/PlayerAudioAbstract.cs
 Assets/LifeDeadMain/Scripts/AudioModule/SceneAudioAbstract.cs
 Assets/LifeDeadMain/Scripts/CameraModule/CameraLevelScript.cs
 Assets/LifeDeadMain/Scripts/DataModule/DataController.cs
+Assets/LifeDeadMain/Scripts/DataModule/LevelData.cs
+Assets/LifeDeadMain/Scripts/DataModule/SceneInfo.cs
 Assets/LifeDeadMain/Scripts/PlayerModule/EyeMonsterScript.cs
+Assets/LifeDeadMain/Scripts/PlayerModule/GirlScript.cs
 Assets/LifeDeadMain/Scripts/PlayerModule/KnightScript.cs
 Assets/LifeDeadMain/Scripts/PlayerModule/MummyScript.cs
 Assets/LifeDeadMain/Scripts/PlayerModule/NinjaScript.cs
+Assets/LifeDeadMain/Scripts/PlayerModule/PlayerBase.cs
 Assets/LifeDeadMain/Scripts/PlayerModule/PlayerController.cs
 Assets/LifeDeadMain/Scripts/PlayerModule/WizardScript.cs
 Assets/LifeDeadMain/Scripts/Test.cs
