@@ -19,10 +19,19 @@ public class DoorWayScript : MonoBehaviour
     public int m_unLockPlayerNum;
 
     public string m_sceneName;
-    
+
+    public GameObject m_timeController;
+
+    public float m_currentTime;
+
+    public int m_starCount;
+
+
     void Start()
     {
         m_dataController = DataController.GetDataInstance();
+        m_timeController = GameObject.FindWithTag("TimeController");
+        m_currentTime = m_timeController.GetComponent<TimerController>().m_currentTime;
     }
 
     void OnTriggerEnter(Collider other)
@@ -35,25 +44,34 @@ public class DoorWayScript : MonoBehaviour
 
     IEnumerator GoToSecletScene()
     {
-        
+        // 获取所有当前关卡要存储的数据 封装到LevelData类中
+        m_starCount = SceneInfo.CalculateInfo(SubstringLevelName(m_sceneName), m_currentTime);
 
-       m_dataController.LoadJsonData();
+        LevelData leveData = new LevelData();
+        leveData.Name = SubstringLevelName(m_sceneName);
+        leveData.Score = SceneInfo.MScore;
+        leveData.Time = m_currentTime;
+        leveData.StarNum = m_starCount;
+
+        // 加载本地数据
+        m_dataController.LoadJsonData();
 
         int unLockPlayer = m_dataController.GetUnLockPlayer();
 
         int unCurrentLevel = m_dataController.GetlevelCurrent();
-
-        // 判断。。。。
+       
+        // 判断是否保存场景数据
         if(m_unLockPlayerNum > unLockPlayer || SubstringLevelName(m_sceneName) >unCurrentLevel)
         {
             // 保存数据
-            m_dataController.SaveData(m_unLockPlayerNum, SubstringLevelName(m_sceneName));
+            m_dataController.SaveData(m_unLockPlayerNum, SubstringLevelName(m_sceneName), leveData);
         }
-                  
+
+        // 刷新SceneInfo类中的计分器
+        SceneInfo.UpdateInfo();
+
         yield return new WaitForSeconds(2);
-
-        //m_dataController.LoadJsonData();
-
+       
         SceneManager.LoadScene("SelectCustoms");
     }
 
