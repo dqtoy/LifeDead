@@ -12,7 +12,7 @@ public class DropScript : MonoBehaviour
     void Start()
     {
         m_rig = transform.parent.GetComponent<Rigidbody>();
-        m_isDrop = false;
+        m_isDrop = false;             
     }
 
     void OnCollisionEnter(Collision other)
