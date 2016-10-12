@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "PlayerCount": 0,
   "LevelCurrent": 1,
@@ -40,3 +41,6 @@
 			}
 		]
 }
+=======
+{"PlayerCount":0,"LevelCurrent":2}
+>>>>>>> 553960279b1577480439fbb89c55362ca3674a1a

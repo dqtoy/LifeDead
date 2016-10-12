@@ -86,6 +86,7 @@ public class DataController
 	/// <returns>当前关卡</returns>
 	public int GetlevelCurrent ()
 	{
+<<<<<<< HEAD
         return (int)parseDate["LevelCurrent"];
     }
 
@@ -126,6 +127,34 @@ public class DataController
     {
         parseDate["IsPlayStartAnimation"] = index;
     }
+=======
+		return m_levelCurrent;
+	}
+
+	/// <summary>
+	/// 更新数据
+	/// </summary>
+	public void LoadJsonData ()
+	{
+#if UNITY_STANDALONE_WIN || UNITY_EDITOR
+        FileInfo file = new FileInfo(Application.dataPath + "/StreamingAssets" + "/DataJson.json");
+#elif UNITY_ANDROID
+        FileInfo file = new FileInfo( "jar:file://" + Application.dataPath + "!/assets/"+"/DataJson.json");
+#endif
+       
+        StreamReader sr = new StreamReader (file.OpenRead (), Encoding.UTF8);
+		string content = sr.ReadToEnd ();
+		sr.Close ();
+		sr.Dispose ();
+		// 开始解析
+		// 使用JsonMapper将content文本转换为JsonData对象
+		JsonData parseDate = JsonMapper.ToObject (content);
+
+		// 获取数据
+		m_playerUnLockCount = (int)parseDate ["PlayerCount"];
+		m_levelCurrent = (int)parseDate ["LevelCurrent"];     
+	}
+>>>>>>> 553960279b1577480439fbb89c55362ca3674a1a
 
     
     /// <summary>
