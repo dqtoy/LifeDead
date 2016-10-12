@@ -16,7 +16,6 @@ public class PlayerBase : MonoBehaviour
 	// 移动速度
 	protected float m_speed = 3;
    
-
     // 刚体组件
     private Rigidbody m_rig;
 
@@ -25,6 +24,9 @@ public class PlayerBase : MonoBehaviour
 
     // 是否正在跳
     private bool m_isJump;
+
+    // 方向
+    protected int m_direction;
     #endregion
 
     #region Unity回调
@@ -37,6 +39,7 @@ public class PlayerBase : MonoBehaviour
     void Start()
     {
         m_isJump = false;
+        m_direction = 1;
     }
 
     void OnCollisionEnter(Collision other)
@@ -108,6 +111,7 @@ public class PlayerBase : MonoBehaviour
         // 设置Player的旋转角度为0
 
         transform.rotation = new Quaternion(0,0.7f,0,0.7f);
+        m_direction = 1;
         //Quaternion.AngleAxis();                                                  
     }
 
@@ -118,7 +122,8 @@ public class PlayerBase : MonoBehaviour
     {
         // 向左转向
         // 设置Player的旋转角度为180
-        transform.rotation = new Quaternion(0, 0.7f, 0, -0.7f);       
+        transform.rotation = new Quaternion(0, 0.7f, 0, -0.7f);
+        m_direction = -1;
     }
 
     #endregion
