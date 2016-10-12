@@ -21,7 +21,7 @@ public class TimeController : MonoBehaviour
     private TimeSlider m_timeSliderScript;
 
     // 当前时间
-    float m_currentTime;
+    public float m_currentTime;
 
     // 剩余时间
     float m_surplusTime;

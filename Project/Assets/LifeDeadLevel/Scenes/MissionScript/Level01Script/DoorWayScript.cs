@@ -32,6 +32,7 @@ public class DoorWayScript : MonoBehaviour
         m_dataController = DataController.GetDataInstance();
         m_timeController = GameObject.FindWithTag("TimeController");
         m_currentTime = m_timeController.GetComponent<TimerController>().m_currentTime;
+        m_currentTime = m_timeController.GetComponent<TimeController>().m_currentTime;
     }
 
     void OnTriggerEnter(Collider other)
