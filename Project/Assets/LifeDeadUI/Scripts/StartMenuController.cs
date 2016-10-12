@@ -31,6 +31,12 @@ public class StartMenuController : MonoBehaviour
     private Button m_closeButton;
     #endregion
     #region 初始化
+    void Awake()
+    {
+        // 获取更新数据
+        m_dataController = DataController.GetDataInstance();
+        m_dataController.LoadJsonData();
+    }
     void Start()
     {
         m_startButton = GameObject.Find("StartButton").GetComponent<Button>();
@@ -46,6 +52,7 @@ public class StartMenuController : MonoBehaviour
 
         m_musicView = GameObject.Find("Musicview").GetComponent<RectTransform>();
         m_dataController = DataController.GetDataInstance();
+       
     }
     #endregion
 
@@ -54,8 +61,9 @@ public class StartMenuController : MonoBehaviour
     /// </summary>
     public void StartButtonAction()
     {
-        m_dataController.LoadJsonData();       
-        SceneManager.LoadScene(1);
+        m_dataController.LoadJsonData();
+    
+            SceneManager.LoadScene(1);
     }
 
     /// <summary>

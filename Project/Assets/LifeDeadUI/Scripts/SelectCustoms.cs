@@ -32,7 +32,9 @@ public class SelectCustoms : MonoBehaviour
 
     private int index;
     public int m_levelSum;
-
+    /// <summary>
+    /// 读取数据
+    /// </summary>
     DataController m_dataController;
 
     // 解锁关卡数量
@@ -129,14 +131,14 @@ public class SelectCustoms : MonoBehaviour
     {
         PlayerPrefs.SetString("CurrentLevel", m_levelName[index]);
 
-        if (index == 0)
-        {
-            SceneManager.LoadScene("Level01Animation");
-        }
-        else
-        {
+        //if (index == 0)
+        //{
+        //    SceneManager.LoadScene("Level01Animation");
+        //}
+        //else
+        //{
             SceneManager.LoadScene(2);
-        }
+        //}
     }
 
     /// <summary>
@@ -144,17 +146,17 @@ public class SelectCustoms : MonoBehaviour
     /// </summary>
     void SetLevleName()
     {
-        m_levelName[0] = "Level01Animation";
-        m_levelName[1] = "Mission1";
-        m_levelName[2] = "Mission2";
-        m_levelName[3] = "Mission3";
-        m_levelName[4] = "Mission4";
+        //m_levelName[0] = "Level01Animation";
+        m_levelName[0] = "Mission1";
+        m_levelName[1] = "Mission2";
+        m_levelName[2] = "Mission3";
+        m_levelName[3] = "Mission4";
         m_levelName[4] = "Mission5";
-        m_levelName[6] = "Mission6";
-        m_levelName[7] = "Mission7";
-        m_levelName[8] = "Mission8";
-        m_levelName[9] = "Mission9";
-        m_levelName[10] = "Mission10";
+        m_levelName[5] = "Mission6";
+        m_levelName[6] = "Mission7";
+        m_levelName[7] = "Mission8";
+        m_levelName[8] = "Mission9";
+        m_levelName[9] = "Mission10";
     }
 
 }

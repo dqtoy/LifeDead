@@ -56,7 +56,7 @@ public class SelectPlayer : MonoBehaviour
   /// </summary>
     private Transform m_lookAtPoint;
     /// <summary>
-    /// 玩家数据
+    /// 读取数据
     /// </summary>
     DataController m_dataController;
     /// <summary>
