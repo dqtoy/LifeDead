@@ -8,29 +8,87 @@ using UnityEngine.SceneManagement;
 public class SelectPlayer : MonoBehaviour
 {
     #region 字段
+    /// <summary>
+    /// 向上按钮
+    /// </summary>
     private Button m_upButton;
+    /// <summary>
+    /// 向下按钮
+    /// </summary>
     private Button m_downButton;
+    /// <summary>
+    /// 开始按钮
+    /// </summary>
     private Button m_startButton;
-
+    /// <summary>
+    /// 人物介绍文本
+    /// </summary>
     private Text m_introText;
-
-    public GameObject[] m_Players;
+    /// <summary>
+    /// 存放玩家数组
+    /// </summary>
+    private GameObject[] m_Players;
+    /// <summary>
+    /// 存放玩家位置
+    /// </summary>
     private Vector2 UpPos = new Vector2(-0.5f, 10);
     private Vector2 DownPos = new Vector2(-0.5f, -10);
     private Vector2 CenterPos = new Vector2(-0.5f, 0);
+    /// <summary>
+    /// 玩家下标
+    /// </summary>
     private int index;
+    /// <summary>
+    /// 玩家路径
+    /// </summary>
+    private string KnightPath = "Knight";
+    private string NinjaPath = "Ninja";
+    private string GirlPath = "Girl";
+    private string MummyPath = "Mummy";
+    private string WizardPath = "Wizard";
+    private string EyeMonterPath = "EyeMonter";
+   /// <summary>
+  /// 玩家朝向点
+  /// </summary>
+    private Transform m_lookAtPoint;
+    /// <summary>
+    /// 玩家数据
+    /// </summary>
+    DataController m_dataController;
+    /// <summary>
+    /// 玩家锁
+    /// </summary>
+    private Image m_lockImage;
+    /// <summary>
+    /// 解锁人物数量
+    /// </summary>
+    int m_unLockPlayerCount;
+    string[] m_introString=new string[6];
     #endregion
 
-
-    #region 初始化
-  
+    #region Unity回调
     void Awake()
     {
+        // 获取更新数据
+        m_dataController = DataController.GetDataInstance();
+        m_dataController.LoadJsonData();
+        m_unLockPlayerCount = m_dataController.GetUnLockPlayer();
+
         index = 0;
-        m_Players = new GameObject[m_Players.Length];
+        m_Players = new GameObject[6];
+        
     }
     void Start()
     {
+        for (int i = 0; i < m_introString.Length; i++)
+        {
+            m_introString[0] = "我是小女孩，没什么特别的";
+            m_introString[1] = "我是独眼怪，可以发射射线";
+            m_introString[2] = "我是木乃伊，我只有两条命";
+            m_introString[3] = "我是雇佣兵，";
+            m_introString[4] = "我是忍者，我有两段跳";
+            m_introString[5] = "我是巫师，我会飞";
+        }
         #region Button按钮注册事件
         m_upButton = GameObject.Find("TurnLeftButton").GetComponent<Button>();
         m_upButton.onClick.AddListener(UpButtonAction);
@@ -42,28 +100,64 @@ public class SelectPlayer : MonoBehaviour
         m_startButton.onClick.AddListener(StartButtonAction);
         #endregion
         m_introText = GameObject.Find("IntroText").GetComponent<Text>();
+        print(index);
+        m_introText.text = m_introString[0];
+        m_lookAtPoint = GameObject.Find("LookAtPoint").GetComponent<Transform>();
+        #region 加载玩家，移除刚体
+        Object KnightPrefab = Resources.Load(KnightPath, typeof(GameObject));
+        GameObject Knight = Instantiate(KnightPrefab) as GameObject;
+        Knight.transform.rotation = m_lookAtPoint.rotation;
+        Destroy(Knight.GetComponent<Rigidbody>());
 
-        for (int i = 0; i < m_Players.Length; i++)
-        {
-            m_Players[0] = GameObject.Find("Knight");
-            m_Players[1] = GameObject.Find("Ninja");
-            m_Players[2] = GameObject.Find("Girl");
-            m_Players[3] = GameObject.Find("Mummy");
-            m_Players[4] = GameObject.Find("Wizard");
-            m_Players[5] = GameObject.Find("EyeMonter");
-        }
+        Object NinjaPrefab = Resources.Load(NinjaPath, typeof(GameObject));
+        GameObject Ninja = Instantiate(NinjaPrefab) as GameObject;
+        Ninja.transform.rotation = m_lookAtPoint.rotation;
+        Destroy(Ninja.GetComponent<Rigidbody>());
+
+        Object GirlPrefab = Resources.Load(GirlPath, typeof(GameObject));
+        GameObject Girl = Instantiate(GirlPrefab) as GameObject;
+        Girl.transform.rotation = m_lookAtPoint.rotation;
+        Destroy(Girl.GetComponent<Rigidbody>());
+
+        Object MummyPrefab = Resources.Load(MummyPath, typeof(GameObject));
+        GameObject Mummy = Instantiate(MummyPrefab) as GameObject;
+        Mummy.transform.rotation = m_lookAtPoint.rotation;
+        Destroy(Mummy.GetComponent<Rigidbody>());
+
+        Object WizardPrefab = Resources.Load(WizardPath, typeof(GameObject));
+        GameObject Wizard = Instantiate(WizardPrefab) as GameObject;
+        Wizard.transform.rotation = m_lookAtPoint.rotation;
+        Destroy(Wizard.GetComponent<Rigidbody>());
+
+        Object EyeMonterPrefab = Resources.Load(EyeMonterPath, typeof(GameObject));
+        GameObject EyeMonter = Instantiate(EyeMonterPrefab) as GameObject;
+        EyeMonter.transform.rotation = m_lookAtPoint.rotation;
+        Destroy(EyeMonter.GetComponent<Rigidbody>());
+        #endregion
+        // 初始化玩家
+            m_Players[0] = Girl;
+            m_Players[1] = EyeMonter;
+            m_Players[2] = Mummy;
+            m_Players[3] = Knight;
+            m_Players[4] = Ninja;
+            m_Players[5] = Wizard;
         
+        // 初始化玩家位置
         for (int i = 1; i < m_Players.Length; i++)
         {
             m_Players[i].transform.position = UpPos;
         }
         m_Players[0].transform.position = CenterPos;
     }
+    void Update()
+    {
+        GetPlayerName(index);
+    }
     #endregion
 
-
-
-    #region 左键点击事件
+    /// <summary>
+    /// 上键点击事件
+    /// </summary>
     public void UpButtonAction()
     {
         if (index < 1)
@@ -76,8 +170,10 @@ public class SelectPlayer : MonoBehaviour
         Tweener CenterMoveRight = m_Players[index + 1].transform.DOMove(UpPos, 0.5f);
         Tweener LeftMoveCenter = m_Players[index].transform.DOMove(CenterPos, 0.5f);
     }
-    #endregion
-    #region 右键点击事件
+
+    /// <summary>
+    /// 下键点击事件
+    /// </summary>
     public void DownButtonAction()
     {
         if (index > m_Players.Length - 2)
@@ -91,39 +187,47 @@ public class SelectPlayer : MonoBehaviour
 
         Tweener RightMoveCenter = m_Players[index].transform.DOMove(CenterPos, 0.5f);
     }
-    #endregion
-    #region 开始按钮点击事件
+
+    /// <summary>
+    /// 开始按钮点击事件
+    /// </summary>
     public void StartButtonAction()
     {
         PlayerPrefs.SetString("PlayerName", GetPlayerName(index));
         SceneManager.LoadScene(PlayerPrefs.GetString("CurrentLevel"));
-
-
     }
-    #endregion
-    #region 获取玩家名字
+
+    /// <summary>
+    /// 获取玩家名字
+    /// </summary>
+    /// <param name="index"></param>
+    /// <returns></returns>
     public string GetPlayerName(int index)
     {
         switch (index)
         {
-
             case 0:
-                return "Knight";
-            case 1:
-                return "Ninja";
-            case 2:
+                m_introText.text = m_introString[0];
                 return "Girl";
-            case 3:
-                return "Mummy";
-            case 4:
-                return "Wizard";
-            case 5:
+            case 1:
+                m_introText.text = m_introString[1];
                 return "EyeMonter";
+            case 2:
+                m_introText.text = m_introString[2];
+                return "Mummy";
+            case 3:
+                m_introText.text = m_introString[3];
+                return "Knight";
+            case 4:
+                m_introText.text = m_introString[4];
+                return "Ninja";
+            case 5:
+                m_introText.text = m_introString[5];
+                return "Wizard";
         }
         return null;
     }
 
 
-    #endregion
 
 }

@@ -103,14 +103,13 @@ public class PlayerController : MonoBehaviour
     void GetUIData()
     {
         m_playerName = PlayerPrefs.GetString("PlayerName");
-
     }
 
     /// <summary>
     /// 加载Resources中角色
     /// </summary>
     void LoadResourcesPlayer(string name)
-    {
+    {       
         m_PlayerPrefab = Resources.Load<GameObject>(name);
     }
 

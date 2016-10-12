@@ -50,61 +50,77 @@ public class PlayerMenuController : MonoBehaviour
         m_selectBar = GameObject.Find("SelectBar").GetComponent<RectTransform>();
     }
 
-
     void Update()
     {
 
         StartCoroutine(CountDown());
     }
-    #region 左键点击事件
+    
+    /// <summary>
+    /// 左键点击事件
+    /// </summary>
     public void LeftButtonAction()
     {
 
     }
-    #endregion
-    #region 右键点击事件
+
+    /// <summary>
+    /// 右键点击事件
+    /// </summary>
     public void RightButtonAction()
     {
 
     }
-    #endregion
-    #region 跳键点击事件
+
+    /// <summary>
+    /// 跳键点击事件
+    /// </summary>
     public void JumpButtonAction()
     {
 
     }
-    #endregion
-    #region 技能键点击事件
+
+    /// <summary>
+    /// 技能键点击事件
+    /// </summary>
     public void SkillButtonAction()
     {
 
     }
-    #endregion
-    #region 暂停键点击事件
+
+    /// <summary>
+    /// 暂停键点击事件
+    /// </summary>
     public void StopButtonAction()
     {
         m_selectBar.DOLocalMoveY(0, 0.5f);
         StartCoroutine(StopTime());
     }
-    #endregion
-    #region 继续游戏点击事件
+
+    /// <summary>
+    /// 继续游戏点击事件
+    /// </summary>
     public void ContinueButtonAction()
     {
         m_selectBar.DOLocalMoveY(600, 0.5f);
     }
-    #endregion
-    #region 重玩点击事件
+
+    /// <summary>
+    /// 重玩点击事件
+    /// </summary>
     public void ReplayButtonAction()
     {
         m_selectBar.DOLocalMoveY(600, 0.5f);
     }
-    #endregion
-    #region 返回点击事件
+
+    /// <summary>
+    /// 返回点击事件
+    /// </summary>
     public void ReturnButtonAction()
     {
         m_selectBar.DOLocalMoveY(600, 0.5f);
     }
-    #endregion
+  
     #region 携程事件
     IEnumerator CountDown()
     {
@@ -115,17 +131,15 @@ public class PlayerMenuController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         //Time.timeScale = 0;
-
-
     }
-
     #endregion
-    #region 当倒计时为0
+ 
+    /// <summary>
+    /// 当倒计时为0
+    /// </summary>
     public void CountZeroAction()
     {
 
     }
-    #endregion
-
-
+  
 }

@@ -37,7 +37,7 @@ public class DoorWayScript : MonoBehaviour
     {
         
 
-        m_dataController.LoadJsonData();
+       m_dataController.LoadJsonData();
 
         int unLockPlayer = m_dataController.GetUnLockPlayer();
 
@@ -52,7 +52,7 @@ public class DoorWayScript : MonoBehaviour
                   
         yield return new WaitForSeconds(2);
 
-        m_dataController.LoadJsonData();
+        //m_dataController.LoadJsonData();
 
         SceneManager.LoadScene("SelectCustoms");
     }
