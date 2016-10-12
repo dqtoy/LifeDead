@@ -70,10 +70,13 @@ public class DataController
 	/// </summary>
 	public void LoadJsonData ()
 	{
-        
-
-        FileInfo file = new FileInfo (Application.dataPath + "/StreamingAssets/DataJson.json");
-		StreamReader sr = new StreamReader (file.OpenRead (), Encoding.UTF8);
+#if UNITY_STANDALONE_WIN || UNITY_EDITOR
+        FileInfo file = new FileInfo(Application.dataPath + "/StreamingAssets" + "/DataJson.json");
+#elif UNITY_ANDROID
+        FileInfo file = new FileInfo( "jar:file://" + Application.dataPath + "!/assets/"+"/DataJson.json");
+#endif
+       
+        StreamReader sr = new StreamReader (file.OpenRead (), Encoding.UTF8);
 		string content = sr.ReadToEnd ();
 		sr.Close ();
 		sr.Dispose ();

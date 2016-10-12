@@ -21,6 +21,10 @@ public class SelectPlayer : MonoBehaviour
     /// </summary>
     private Button m_startButton;
     /// <summary>
+    /// 后退按钮
+    /// </summary>
+    private Button m_escButton;
+    /// <summary>
     /// 人物介绍文本
     /// </summary>
     private Text m_introText;
@@ -88,6 +92,8 @@ public class SelectPlayer : MonoBehaviour
             m_introString[3] = "我是雇佣兵，";
             m_introString[4] = "我是忍者，我有两段跳";
             m_introString[5] = "我是巫师，我会飞";
+            print(m_unLockPlayerCount);
+           
         }
         #region Button按钮注册事件
         m_upButton = GameObject.Find("TurnLeftButton").GetComponent<Button>();
@@ -98,6 +104,10 @@ public class SelectPlayer : MonoBehaviour
 
         m_startButton = GameObject.Find("StartButton").GetComponent<Button>();
         m_startButton.onClick.AddListener(StartButtonAction);
+
+
+        m_escButton = GameObject.Find("EscButton").GetComponent<Button>();
+        m_escButton.onClick.AddListener(EscButtonAction);
         #endregion
         m_introText = GameObject.Find("IntroText").GetComponent<Text>();
         print(index);
@@ -194,7 +204,17 @@ public class SelectPlayer : MonoBehaviour
     public void StartButtonAction()
     {
         PlayerPrefs.SetString("PlayerName", GetPlayerName(index));
-        SceneManager.LoadScene(PlayerPrefs.GetString("CurrentLevel"));
+        if (index <= m_unLockPlayerCount)
+        {
+            SceneManager.LoadScene(PlayerPrefs.GetString("CurrentLevel"));
+        }
+    }
+    /// <summary>
+    /// 后退按钮点击事件
+    /// </summary>
+    public void EscButtonAction()
+    {
+        SceneManager.LoadScene("SelectCustoms");
     }
 
     /// <summary>

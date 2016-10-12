@@ -62,6 +62,7 @@ public class SelectCustoms : MonoBehaviour
         #region 点击事件注册
         m_buttonRight = GameObject.Find("ButtonRight").GetComponent<Button>();
         m_buttonRight.onClick.AddListener(RightButtonAction);
+
         m_buttonLeft = GameObject.Find("ButtonLeft").GetComponent<Button>();
         m_buttonLeft.onClick.AddListener(LeftButtonAction);
         #endregion
