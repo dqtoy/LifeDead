@@ -20,6 +20,10 @@ public class SelectCustoms : MonoBehaviour
     /// </summary>
     private string[] m_levelName;
     /// <summary>
+    /// 选择关卡数组
+    /// </summary>
+    private Button[] m_switchButton;
+    /// <summary>
     /// 初始位置
     /// </summary>
     private RectTransform LeftPos;
@@ -29,11 +33,13 @@ public class SelectCustoms : MonoBehaviour
     private int index;
     public int m_levelSum;
 
-    private Button[] m_switchButton;
     DataController m_dataController;
 
     // 解锁关卡数量
     int m_levelCurrentCount;
+    /// <summary>
+    /// 锁子图片
+    /// </summary>
     private Image m_lockImage;
     #endregion
 
@@ -55,6 +61,7 @@ public class SelectCustoms : MonoBehaviour
 
     void Start()
     {
+        // 位置初始化
         LeftPos = GameObject.Find("LeftPos").GetComponent<RectTransform>();
         RightPos = GameObject.Find("RightPos").GetComponent<RectTransform>();
         CenterPos = GameObject.Find("CenterPos").GetComponent<RectTransform>();

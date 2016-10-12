@@ -6,11 +6,20 @@ public class TimeSlider : MonoBehaviour
 {
     private Slider m_timeSlider;
 
+    void Awake()
+    {
+        m_timeSlider = GetComponent<Slider>();
+    }
+
     void Start ()
     {
-        m_timeSlider = GameObject.FindWithTag("TimeSlider").GetComponent<Slider>();
+        
     }
 	
+    public Slider GetTimeSlider()
+    {
+        return m_timeSlider;
+    }
 
     public void SetTime(float time)
     {
