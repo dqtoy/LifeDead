@@ -125,6 +125,14 @@ public class DataController
     public void SetStartAnimationIndex(int index)
     {
         parseDate["IsPlayStartAnimation"] = index;
+
+        FileStream file = new FileStream(Application.dataPath + "/StreamingAssets/DataJson.json", FileMode.Create);
+        byte[] bts = System.Text.Encoding.UTF8.GetBytes(parseDate.ToJson());
+        file.Write(bts, 0, bts.Length);
+        if (file != null)
+        {
+            file.Close();
+        }
     }
 
     /// <summary>
@@ -135,10 +143,12 @@ public class DataController
     public LevelData LoadLevelData(int index)
     {     
         m_levelData.Name = (int)parseDate["LevelData"][index]["Name"];
-        m_levelData.Time = (float)parseDate["LevelData"][index]["Time"];
+
+     
         m_levelData.StarNum = (int)parseDate["LevelData"][index]["StarNum"];
         m_levelData.Score = (int)parseDate["LevelData"][index]["Score"];
-
+        //object o = parseDate["LevelData"][index]["Time"];
+        //m_levelData.Time = Convert.ToSingle(parseDate["LevelData"][index]["Time"]);
         return m_levelData;
     }
     #endregion

@@ -36,6 +36,7 @@ public class StartMenuController : MonoBehaviour
         // 获取更新数据
         m_dataController = DataController.GetDataInstance();
         m_dataController.LoadJsonData();
+        
     }
     void Start()
     {
@@ -62,8 +63,19 @@ public class StartMenuController : MonoBehaviour
     public void StartButtonAction()
     {
         m_dataController.LoadJsonData();
-    
+       
+     
+        if (m_dataController.GetStartAnimationIndex() == 0)
+        {
+
+            SceneManager.LoadScene("Level01Animation");
+            m_dataController.SetStartAnimationIndex(1);
+        }
+        else
+        {
             SceneManager.LoadScene(1);
+        }
+     
     }
 
     /// <summary>
@@ -89,6 +101,6 @@ public class StartMenuController : MonoBehaviour
     {
         m_musicView.DOLocalMoveX(-900, 0.5f);
     }
-  
 
+  
 }

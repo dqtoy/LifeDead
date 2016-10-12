@@ -1,46 +1,89 @@
-<<<<<<< HEAD
 {
   "PlayerCount": 0,
   "LevelCurrent": 1,
-  "IsPlayStartAnimation": 0,
-  "LevelData":[
-			{		
-			  "Name":1,
-        "Time":0,
-        "Score": 0,
-        "StarNum": 0,
-        "SumTime": 60,
-        "SumScore": 100
-			},
-						 
-			{
-			  "Name":2,
-        "Time":0,
-        "Score": 0,
-        "StarNum": 0,
-        "SumTime": 60,
-        "SumScore": 100
-			},
-				
-			{
-			  "Name":3,
-        "Time":0,
-        "Score": 0,
-        "StarNum": 0,
-        "SumTime": 60,
-        "SumScore": 100
-			},
+  "IsPlayStartAnimation": 1,
+  "LevelData": [
+    
+    {
+      "Name": 1,
+      "Time": "0.0",
+      "Score": 0,
+      "StarNum": 2,
+      "SumTime": 60.23,
+      "SumScore": 100
+    },
+    {
+      "Name": 2,
+      "Time": "0.0",
+      "Score": 0,
+      "StarNum": 3,
+      "SumTime": 60.23,
+      "SumScore": 100
+    },
+    {
+      "Name": 3,
+      "Time": "0.0",
+      "Score": 0,
+      "StarNum": 1,
+      "SumTime": 60.23,
+      "SumScore": 100
+    },
+    {
+      "Name": 4,
+      "Time": "0.0",
+      "Score": 0,
+      "StarNum": 0,
+      "SumTime": 60.23,
+      "SumScore": 100
+    },
+  {
+      "Name": 5,
+      "Time": "0.0",
+      "Score": 0,
+      "StarNum": 0,
+      "SumTime": 60.23,
+      "SumScore": 100
+    },
+    {
+      "Name": 6,
+      "Time": "0.0",
+      "Score": 0,
+      "StarNum": 0,
+      "SumTime": 60.23,
+      "SumScore": 100
+    },
+    {
+      "Name": 7,
+      "Time": "0.0",
+      "Score": 0,
+      "StarNum": 0,
+      "SumTime": 60.23,
+      "SumScore": 100
+    },
+    {
+      "Name": 8,
+      "Time": "0.0",
+      "Score": 0,
+      "StarNum": 0,
+      "SumTime": 60.23,
+      "SumScore": 100
+    },
+    {
+      "Name": 9,
+      "Time": "0.0",
+      "Score": 0,
+      "StarNum": 0,
+      "SumTime": 60.23,
+      "SumScore": 100
+    },
+   {
+      "Name": 10,
+      "Time": "0.0",
+      "Score": 0,
+      "StarNum": 0,
+      "SumTime": 60.23,
+      "SumScore": 100
+    }
 
-      {
-			  "Name":4,
-        "Time":0,
-        "Score": 0,
-        "StarNum": 0,
-        "SumTime": 60,
-        "SumScore": 100
-			}
-		]
+  ]
 }
-=======
-{"PlayerCount":0,"LevelCurrent":2}
->>>>>>> 553960279b1577480439fbb89c55362ca3674a1a
