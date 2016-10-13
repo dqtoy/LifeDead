@@ -12,7 +12,11 @@ using System.IO;
 using System.Text;
 using System;
 
+<<<<<<< HEAD
 public class DataController
+=======
+public class DataController : MonoBehaviour
+>>>>>>> 7a8fb9b5188369fbcf7648c2c26606a0953af350
 {
     #region 字段
     // 关卡数据Model
@@ -111,11 +115,17 @@ public class DataController
     /// </summary>
     /// <param name="index">当前关卡</param>
     /// <returns></returns>
+<<<<<<< HEAD
     public float GetSumTime(int index)
     {            
         object o = parseDate["LevelData"][index]["SumTime"];
 
         return Convert.ToSingle(o);      
+=======
+    public int GetSumTime(int index)
+    {    
+        return (int)parseDate["LevelData"][index]["SumTime"];   
+>>>>>>> 7a8fb9b5188369fbcf7648c2c26606a0953af350
     }
 
     /// <summary>
@@ -135,7 +145,10 @@ public class DataController
     {
         parseDate["IsPlayStartAnimation"] = index;
 
+<<<<<<< HEAD
         
+=======
+>>>>>>> 7a8fb9b5188369fbcf7648c2c26606a0953af350
         FileStream file = new FileStream(Application.dataPath + path, FileMode.Create);
         byte[] bts = System.Text.Encoding.UTF8.GetBytes(parseDate.ToJson());
         file.Write(bts, 0, bts.Length);
@@ -151,6 +164,7 @@ public class DataController
     /// <param name="index">当前关卡</param>
     /// <returns></returns>
     public LevelData LoadLevelData(int index)
+<<<<<<< HEAD
     {            
         m_levelData.Name = (int)parseDate["LevelData"][index]["Name"];      
         m_levelData.StarNum = (int)parseDate["LevelData"][index]["StarNum"];
@@ -159,6 +173,18 @@ public class DataController
         object o = parseDate["LevelData"][index]["Time"];
         m_levelData.Time = Convert.ToSingle(o);
        
+=======
+    {     
+        m_levelData.Name = (int)parseDate["LevelData"][index]["Name"];
+        m_levelData.Time = 50;
+
+        m_levelData.StarNum = (int)parseDate["LevelData"][index]["StarNum"];
+        m_levelData.Score = (int)parseDate["LevelData"][index]["Score"];
+
+        //object o = parseDate["LevelData"][index]["Time"];
+       // m_levelData.Time = Convert.ToSingle(50);
+
+>>>>>>> 7a8fb9b5188369fbcf7648c2c26606a0953af350
         return m_levelData;
     }
     #endregion
@@ -171,20 +197,23 @@ public class DataController
     /// <param name="m_levelCurrent"></param>
     public void SaveData (int m_playerUnLockCount, int m_levelCurrent,LevelData levelData)
 	{
-		JsonData DataFileJson = new JsonData ();
+
 
         // 保存解锁关卡信息和解锁人物信息
-		DataFileJson ["PlayerCount"] = m_playerUnLockCount;
-		DataFileJson ["LevelCurrent"] = m_levelCurrent;
+        parseDate["PlayerCount"] = m_playerUnLockCount;
+        parseDate["LevelCurrent"] = m_levelCurrent;
+
+        levelData.Name -= 2;
 
         // 保存当前关卡的玩家信息
-        DataFileJson["LevelData"][levelData.Name]["Name"] = levelData.Name;
-        DataFileJson["LevelData"][levelData.Name]["Time"] = levelData.Time;
-        DataFileJson["LevelData"][levelData.Name]["StarNum"] = levelData.StarNum;
-        DataFileJson["LevelData"][levelData.Name]["Score"] = levelData.Score;
-        
+        parseDate["LevelData"][levelData.Name]["Time"] = levelData.Time;
+        parseDate["LevelData"][levelData.Name]["StarNum"] = levelData.StarNum;
+        parseDate["LevelData"][levelData.Name]["Score"] = levelData.Score;
+
+       
+
         FileStream file = new FileStream (Application.dataPath + "/StreamingAssets/DataJson.json", FileMode.Create);
-		byte[] bts = System.Text.Encoding.UTF8.GetBytes (DataFileJson.ToJson ());
+		byte[] bts = System.Text.Encoding.UTF8.GetBytes (parseDate.ToJson ());
 		file.Write (bts, 0, bts.Length);
 		if (file != null) {
 			file.Close ();
