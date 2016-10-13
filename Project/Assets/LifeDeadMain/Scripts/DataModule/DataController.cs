@@ -12,7 +12,7 @@ using System.IO;
 using System.Text;
 using System;
 
-
+public class DataController
 {
     #region 字段
     // 关卡数据Model
@@ -112,11 +112,9 @@ using System;
     /// <param name="index">当前关卡</param>
     /// <returns></returns>
     public float GetSumTime(int index)
-    {
-        return (float)parseDate["LevelData"][index]["SumTime"];
-    {        
-        object o = parseDate["LevelData"].Count;
-                
+    {            
+        object o = parseDate["LevelData"][index]["SumTime"];
+
         return Convert.ToSingle(o);      
     }
 
@@ -137,7 +135,7 @@ using System;
     {
         parseDate["IsPlayStartAnimation"] = index;
 
-        FileStream file = new FileStream(Application.dataPath + "/StreamingAssets/DataJson.json", FileMode.Create);
+        
         FileStream file = new FileStream(Application.dataPath + path, FileMode.Create);
         byte[] bts = System.Text.Encoding.UTF8.GetBytes(parseDate.ToJson());
         file.Write(bts, 0, bts.Length);
@@ -153,23 +151,14 @@ using System;
     /// <param name="index">当前关卡</param>
     /// <returns></returns>
     public LevelData LoadLevelData(int index)
-    {     
-        m_levelData.Name = (int)parseDate["LevelData"][index]["Name"];
-
-     
-        m_levelData.StarNum = (int)parseDate["LevelData"][index]["StarNum"];
-        m_levelData.Score = (int)parseDate["LevelData"][index]["Score"];
-        //object o = parseDate["LevelData"][index]["Time"];
-        //m_levelData.Time = Convert.ToSingle(parseDate["LevelData"][index]["Time"]);
-=======
+    {            
         m_levelData.Name = (int)parseDate["LevelData"][index]["Name"];      
         m_levelData.StarNum = (int)parseDate["LevelData"][index]["StarNum"];
         m_levelData.Score = (int)parseDate["LevelData"][index]["Score"];
 
         object o = parseDate["LevelData"][index]["Time"];
-        m_levelData.Time = Convert.ToSingle(0);
+        m_levelData.Time = Convert.ToSingle(o);
        
->>>>>>> 8970ceb8e29f030b32f6e1baf735a42f870964d6
         return m_levelData;
     }
     #endregion
