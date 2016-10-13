@@ -14,22 +14,30 @@ using System;
 public class DoorWayScript : MonoBehaviour
 {
 
+    // 数据控制器
     public DataController m_dataController;
 
+    // 当前关卡解锁人物
     public int m_unLockPlayerNum;
 
+    // 当前关卡名称 外部提供
     public string m_sceneName;
-
-    public GameObject m_timeController;
-
-    public int m_currentTime;
-
-    public int m_starCount;
+    
+    // 时间控制器
+    private GameObject m_timeController;
+   
+    // 本关所用时间
+    private int m_currentTime;
+    
+    // 本关的星数
+    private int m_starCount;
     
 
     void Start()
     {
+        // 获取数据控制器单例类
         m_dataController = DataController.GetDataInstance();
+        // 获取时间控制器
         m_timeController = GameObject.FindWithTag("TimeController");                
     }
 
@@ -46,14 +54,17 @@ public class DoorWayScript : MonoBehaviour
 
         m_dataController.LoadLevelData(1);
 
+        
+        // 获取本关所用时间
         m_currentTime = (int)m_timeController.GetComponent<TimeController>().m_currentTime;
-
-        print("所用时间"+m_currentTime);
+       
+        print("本关所用时间"+m_currentTime);
 
         // 获取所有当前关卡要存储的数据 封装到LevelData类中
         m_starCount = SceneInfo.CalculateInfo(SubstringLevelName(m_sceneName)-1, m_currentTime);
+      
+        print("得星个数"+ m_starCount);
 
-        print("性的个数"+ m_starCount);
         // 封装用户数据
         LevelData leveData = new LevelData();
         leveData.Name = SubstringLevelName(m_sceneName);

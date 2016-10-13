@@ -22,8 +22,8 @@ public static class SceneInfo
     /// <param name="index">当前关卡数</param>
     /// <param name="time">通过本关所用的时间</param>
     /// <returns></returns>           
-    public static int CalculateInfo(int index,float time)
-    {        
+    public static int CalculateInfo(int index, float time)
+    {
         // 数据控制器
         DataController m_dataController = DataController.GetDataInstance();
 
@@ -32,12 +32,12 @@ public static class SceneInfo
 
         // 关卡总时间
         float sumTime = m_dataController.GetSumTime(index);
-       
+
         // 计算得分                  
         return StarCount(sumTime, time, sumScore, MScore);
     }
 
-    
+
     /// <summary>
     /// 刷新当前类的计分器
     /// </summary>
@@ -55,9 +55,9 @@ public static class SceneInfo
     /// <param name="CurScore"></param>
     /// <returns></returns>
     private static int StarCount(float Time, float CurTime, float SumScore, float CurScore)
-    {                 
+    {
         int starcount = 0;
-        if (CurTime / Time > 0.3f)
+        if (CurTime / Time < 0.5f)
         {
             starcount++;
             if (CurScore / SumScore > 0.3f && CurScore / SumScore < 0.6f)
@@ -68,10 +68,10 @@ public static class SceneInfo
             {
                 starcount = starcount + 2;
             }
-        
+
             return starcount;
         }
-        else if (CurTime / Time < 0.3f)
+        else if (CurTime / Time > 0.5f)
         {
             if (CurScore / SumScore > 0.3f && CurScore / SumScore < 0.6f)
             {
@@ -81,11 +81,11 @@ public static class SceneInfo
             {
                 starcount = starcount + 2;
             }
-        
+
             return starcount;
         }
         else
-        {      
+        {
             return starcount;
         }
     }
