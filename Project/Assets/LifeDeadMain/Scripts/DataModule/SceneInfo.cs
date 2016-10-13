@@ -32,7 +32,7 @@ public static class SceneInfo
 
         // 关卡总时间
         float sumTime = m_dataController.GetSumTime(index);
-
+       
         // 计算得分                  
         return StarCount(sumTime, time, sumScore, MScore);
     }

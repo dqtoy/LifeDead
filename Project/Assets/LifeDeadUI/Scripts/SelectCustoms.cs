@@ -176,7 +176,6 @@ public class SelectCustoms : MonoBehaviour
     {
         switch (m_dataController.LoadLevelData(index).StarNum)
         {
-
             case 1:
                 star1.gameObject.SetActive(true);
                 break;
