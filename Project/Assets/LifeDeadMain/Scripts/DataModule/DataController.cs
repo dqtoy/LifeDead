@@ -151,9 +151,7 @@ public class DataController
     /// <param name="index">当前关卡</param>
     /// <returns></returns>
     public LevelData LoadLevelData(int index)
-    {     
-        m_levelData.Name = (int)parseDate["LevelData"][index]["Name"];
-        m_levelData.Time = (int)parseDate["LevelData"][index]["Time"];
+    {                  
         m_levelData.Name = (int)parseDate["LevelData"][index]["Name"];      
         m_levelData.StarNum = (int)parseDate["LevelData"][index]["StarNum"];
         m_levelData.Score = (int)parseDate["LevelData"][index]["Score"];
