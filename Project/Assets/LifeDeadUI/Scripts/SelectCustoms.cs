@@ -20,20 +20,34 @@ public class SelectCustoms : MonoBehaviour
     /// </summary>
     private string[] m_levelName;
     /// <summary>
+    /// 选择关卡数组
+    /// </summary>
+    private Button[] m_switchButton;
+    /// <summary>
     /// 初始位置
     /// </summary>
     private RectTransform LeftPos;
     private RectTransform RightPos;
     private RectTransform CenterPos;
+    /// <summary>
+    /// 关卡星星
+    /// </summary>
+    private Image star1;
+    private Image star2;
+    private Image star3;
 
     private int index;
-    public int m_levelSum;
-
-    private Button[] m_switchButton;
+    public int m_levelSum = 10;
+    /// <summary>
+    /// 读取数据
+    /// </summary>
     DataController m_dataController;
 
     // 解锁关卡数量
     int m_levelCurrentCount;
+    /// <summary>
+    /// 锁子图片
+    /// </summary>
     private Image m_lockImage;
     #endregion
 
@@ -43,6 +57,7 @@ public class SelectCustoms : MonoBehaviour
         m_dataController = DataController.GetDataInstance();
         m_dataController.LoadJsonData();
         m_levelCurrentCount = m_dataController.GetlevelCurrent();
+
 
         m_levelName = new string[m_levelSum];
         imageArray = new Image[m_levelSum];
@@ -55,6 +70,9 @@ public class SelectCustoms : MonoBehaviour
 
     void Start()
     {
+
+
+        // 位置初始化
         LeftPos = GameObject.Find("LeftPos").GetComponent<RectTransform>();
         RightPos = GameObject.Find("RightPos").GetComponent<RectTransform>();
         CenterPos = GameObject.Find("CenterPos").GetComponent<RectTransform>();
@@ -62,6 +80,7 @@ public class SelectCustoms : MonoBehaviour
         #region 点击事件注册
         m_buttonRight = GameObject.Find("ButtonRight").GetComponent<Button>();
         m_buttonRight.onClick.AddListener(RightButtonAction);
+
         m_buttonLeft = GameObject.Find("ButtonLeft").GetComponent<Button>();
         m_buttonLeft.onClick.AddListener(LeftButtonAction);
         #endregion
@@ -71,6 +90,7 @@ public class SelectCustoms : MonoBehaviour
         {
             imageArray[i] = GameObject.Find("customs" + i).GetComponent<Image>();
             m_switchButton[i] = GameObject.Find("customs" + i).GetComponent<Button>();
+
             if (i <= m_levelCurrentCount)
             {
                 m_lockImage = imageArray[i].GetComponentsInChildren<Image>()[1];
@@ -80,6 +100,14 @@ public class SelectCustoms : MonoBehaviour
         }
         imageArray[0].rectTransform.position = CenterPos.position;
         #endregion
+    }
+
+    void Update()
+    {
+        star1 = imageArray[index].transform.FindChild("StarPanel/StarBg1/Star1").GetComponent<Image>();
+        star2 = imageArray[index].transform.FindChild("StarPanel/StarBg2/Star2").GetComponent<Image>();
+        star3 = imageArray[index].transform.FindChild("StarPanel/StarBg3/Star3").GetComponent<Image>();
+        SetStarShow();
     }
 
     /// <summary>
@@ -93,7 +121,7 @@ public class SelectCustoms : MonoBehaviour
         }
 
         index--;
-        
+
         Tweener CenterMoveRight = imageArray[index + 1].rectTransform.DOMove(RightPos.position, 0.5f);
         Tweener LeftMoveCenter = imageArray[index].rectTransform.DOMove(CenterPos.position, 0.5f);
     }
@@ -121,14 +149,8 @@ public class SelectCustoms : MonoBehaviour
     {
         PlayerPrefs.SetString("CurrentLevel", m_levelName[index]);
 
-        if (index == 0)
-        {
-            SceneManager.LoadScene("Level01Animation");
-        }
-        else
-        {
-            SceneManager.LoadScene(2);
-        }
+
+        SceneManager.LoadScene(2);
     }
 
     /// <summary>
@@ -136,17 +158,43 @@ public class SelectCustoms : MonoBehaviour
     /// </summary>
     void SetLevleName()
     {
-        m_levelName[0] = "Level01Animation";
-        m_levelName[1] = "Mission1";
-        m_levelName[2] = "Mission2";
-        m_levelName[3] = "Mission3";
-        m_levelName[4] = "Mission4";
+        m_levelName[0] = "Mission1";
+        m_levelName[1] = "Mission2";
+        m_levelName[2] = "Mission3";
+        m_levelName[3] = "Mission4";
         m_levelName[4] = "Mission5";
-        m_levelName[6] = "Mission6";
-        m_levelName[7] = "Mission7";
-        m_levelName[8] = "Mission8";
-        m_levelName[9] = "Mission9";
-        m_levelName[10] = "Mission10";
+        m_levelName[5] = "Mission6";
+        m_levelName[6] = "Mission7";
+        m_levelName[7] = "Mission8";
+        m_levelName[8] = "Mission9";
+        m_levelName[9] = "Mission10";
     }
+    /// <summary>
+    /// 设置每一关星星的数量显示
+    /// </summary>
+    void SetStarShow()
+    {
+        switch (m_dataController.LoadLevelData(index).StarNum)
+        {
+            case 1:
+                star1.gameObject.SetActive(true);
+                break;
+            case 2:
+                star1.gameObject.SetActive(true);
+                star2.gameObject.SetActive(true);
+                break;
+            case 3:
+                star1.gameObject.SetActive(true);
+                star2.gameObject.SetActive(true);
+                star3.gameObject.SetActive(true);
+                break;
+            default:
+                star1.gameObject.SetActive(false);
+                star2.gameObject.SetActive(false);
+                star3.gameObject.SetActive(false);
+                break;
+        }
 
+
+    }
 }

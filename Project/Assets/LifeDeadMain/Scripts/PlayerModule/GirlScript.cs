@@ -19,6 +19,6 @@ public class GirlScript : PlayerBase
 		
 	void Update ()
     {
-	
-	}
+        
+    }
 }

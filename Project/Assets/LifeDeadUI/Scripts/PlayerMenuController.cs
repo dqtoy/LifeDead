@@ -15,7 +15,6 @@ public class PlayerMenuController : MonoBehaviour
     private Button m_replayButton;
     private Button m_returnButton;
 
-    private Scrollbar m_countdownBar;
     private RectTransform m_selectBar;
     #endregion
 
@@ -46,14 +45,7 @@ public class PlayerMenuController : MonoBehaviour
         m_returnButton = GameObject.Find("ReturnButton").GetComponent<Button>();
         m_returnButton.onClick.AddListener(ReturnButtonAction);
         #endregion
-        m_countdownBar = GameObject.Find("CountDownBar").GetComponent<Scrollbar>();
         m_selectBar = GameObject.Find("SelectBar").GetComponent<RectTransform>();
-    }
-
-    void Update()
-    {
-
-        StartCoroutine(CountDown());
     }
     
     /// <summary>
@@ -121,18 +113,13 @@ public class PlayerMenuController : MonoBehaviour
         m_selectBar.DOLocalMoveY(600, 0.5f);
     }
   
-    #region 携程事件
-    IEnumerator CountDown()
-    {
-        yield return null;
-        m_countdownBar.value -= Time.deltaTime * 0.03f;
-    }
+   
     IEnumerator StopTime()
     {
         yield return new WaitForSeconds(0.5f);
         //Time.timeScale = 0;
     }
-    #endregion
+  
  
     /// <summary>
     /// 当倒计时为0

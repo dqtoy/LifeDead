@@ -21,6 +21,10 @@ public class SelectPlayer : MonoBehaviour
     /// </summary>
     private Button m_startButton;
     /// <summary>
+    /// 后退按钮
+    /// </summary>
+    private Button m_escButton;
+    /// <summary>
     /// 人物介绍文本
     /// </summary>
     private Text m_introText;
@@ -52,7 +56,7 @@ public class SelectPlayer : MonoBehaviour
   /// </summary>
     private Transform m_lookAtPoint;
     /// <summary>
-    /// 玩家数据
+    /// 读取数据
     /// </summary>
     DataController m_dataController;
     /// <summary>
@@ -63,7 +67,14 @@ public class SelectPlayer : MonoBehaviour
     /// 解锁人物数量
     /// </summary>
     int m_unLockPlayerCount;
+    /// <summary>
+    /// 人物介绍数组
+    /// </summary>
     string[] m_introString=new string[6];
+    /// <summary>
+    /// 选择人物背景面板
+    /// </summary>
+    private Image m_changePanel;
     #endregion
 
     #region Unity回调
@@ -75,34 +86,16 @@ public class SelectPlayer : MonoBehaviour
         m_unLockPlayerCount = m_dataController.GetUnLockPlayer();
 
         index = 0;
-        m_Players = new GameObject[6];
-        
+  
     }
     void Start()
     {
-        for (int i = 0; i < m_introString.Length; i++)
-        {
-            m_introString[0] = "我是小女孩，没什么特别的";
-            m_introString[1] = "我是独眼怪，可以发射射线";
-            m_introString[2] = "我是木乃伊，我只有两条命";
-            m_introString[3] = "我是雇佣兵，";
-            m_introString[4] = "我是忍者，我有两段跳";
-            m_introString[5] = "我是巫师，我会飞";
-        }
-        #region Button按钮注册事件
-        m_upButton = GameObject.Find("TurnLeftButton").GetComponent<Button>();
-        m_upButton.onClick.AddListener(UpButtonAction);
-
-        m_downButton = GameObject.Find("TurnRightButton").GetComponent<Button>();
-        m_downButton.onClick.AddListener(DownButtonAction);
-
-        m_startButton = GameObject.Find("StartButton").GetComponent<Button>();
-        m_startButton.onClick.AddListener(StartButtonAction);
-        #endregion
         m_introText = GameObject.Find("IntroText").GetComponent<Text>();
-        print(index);
         m_introText.text = m_introString[0];
         m_lookAtPoint = GameObject.Find("LookAtPoint").GetComponent<Transform>();
+
+        #region 初始化玩家
+        m_Players = new GameObject[6];
         #region 加载玩家，移除刚体
         Object KnightPrefab = Resources.Load(KnightPath, typeof(GameObject));
         GameObject Knight = Instantiate(KnightPrefab) as GameObject;
@@ -134,14 +127,43 @@ public class SelectPlayer : MonoBehaviour
         EyeMonter.transform.rotation = m_lookAtPoint.rotation;
         Destroy(EyeMonter.GetComponent<Rigidbody>());
         #endregion
-        // 初始化玩家
-            m_Players[0] = Girl;
-            m_Players[1] = EyeMonter;
-            m_Players[2] = Mummy;
-            m_Players[3] = Knight;
-            m_Players[4] = Ninja;
-            m_Players[5] = Wizard;
-        
+    
+        m_Players[0] = Girl;
+        m_Players[1] = EyeMonter;
+        m_Players[2] = Mummy;
+        m_Players[3] = Knight;
+        m_Players[4] = Ninja;
+        m_Players[5] = Wizard;
+        #endregion
+
+        m_changePanel = GameObject.Find("ChangePanel").GetComponent<Image>();
+        m_lockImage = GameObject.Find("Lock").GetComponent<Image>();
+        // 初始化人物介绍
+        for (int i = 0; i < m_introString.Length; i++)
+        {
+            m_introString[0] = "我是小女孩，没什么特别的";
+            m_introString[1] = "我是独眼怪，可以发射射线";
+            m_introString[2] = "我是木乃伊，我只有两条命";
+            m_introString[3] = "我是雇佣兵，";
+            m_introString[4] = "我是忍者，我有两段跳";
+            m_introString[5] = "我是巫师，我会飞";   
+        }
+      
+        #region Button按钮注册事件
+        m_upButton = GameObject.Find("TurnLeftButton").GetComponent<Button>();
+        m_upButton.onClick.AddListener(UpButtonAction);
+
+        m_downButton = GameObject.Find("TurnRightButton").GetComponent<Button>();
+        m_downButton.onClick.AddListener(DownButtonAction);
+
+        m_startButton = GameObject.Find("StartButton").GetComponent<Button>();
+        m_startButton.onClick.AddListener(StartButtonAction);
+
+
+        m_escButton = GameObject.Find("EscButton").GetComponent<Button>();
+        m_escButton.onClick.AddListener(EscButtonAction);
+        #endregion
+    
         // 初始化玩家位置
         for (int i = 1; i < m_Players.Length; i++)
         {
@@ -152,6 +174,7 @@ public class SelectPlayer : MonoBehaviour
     void Update()
     {
         GetPlayerName(index);
+        SetPlayerState();
     }
     #endregion
 
@@ -194,7 +217,17 @@ public class SelectPlayer : MonoBehaviour
     public void StartButtonAction()
     {
         PlayerPrefs.SetString("PlayerName", GetPlayerName(index));
-        SceneManager.LoadScene(PlayerPrefs.GetString("CurrentLevel"));
+        if (index <= m_unLockPlayerCount)
+        {
+            SceneManager.LoadScene(PlayerPrefs.GetString("CurrentLevel"));
+        }
+    }
+    /// <summary>
+    /// 后退按钮点击事件
+    /// </summary>
+    public void EscButtonAction()
+    {
+        SceneManager.LoadScene("SelectCustoms");
     }
 
     /// <summary>
@@ -227,7 +260,21 @@ public class SelectPlayer : MonoBehaviour
         }
         return null;
     }
-
-
+    /// <summary>
+    /// 设置玩家背景状态
+    /// </summary>
+    public void SetPlayerState()
+    {
+        if (index <= m_unLockPlayerCount)
+        {
+            m_lockImage.gameObject.SetActive(false);
+            m_changePanel.color = new Color32(255, 255, 255, 255);
+        }
+        else
+        {
+            m_lockImage.gameObject.SetActive(true);
+            m_changePanel.color = new Color32(170, 170, 170, 170);
+        }
+    }
 
 }
