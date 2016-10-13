@@ -176,7 +176,7 @@ public class DataController : MonoBehaviour
         parseDate["PlayerCount"] = m_playerUnLockCount;
         parseDate["LevelCurrent"] = m_levelCurrent;
 
-        levelData.Name -= 2;
+        levelData.Name -= 1;
 
         // 保存当前关卡的玩家信息
         parseDate["LevelData"][levelData.Name]["Time"] = levelData.Time;
