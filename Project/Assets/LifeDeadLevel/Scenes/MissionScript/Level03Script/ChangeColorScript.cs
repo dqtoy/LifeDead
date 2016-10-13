@@ -22,7 +22,7 @@ public class ChangeColorScript : MonoBehaviour
 	{
 		m_colorIndex = 0;
 		m_maxColorIndex = 2;
-		m_meshRenderer = transform.GetComponent<MeshRenderer> ();
+		m_meshRenderer = transform.parent.GetComponent<MeshRenderer> ();
 	}
 
 	/// <summary>

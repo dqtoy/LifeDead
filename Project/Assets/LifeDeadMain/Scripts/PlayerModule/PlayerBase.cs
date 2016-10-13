@@ -121,6 +121,14 @@ public class PlayerBase : MonoBehaviour
         transform.rotation = new Quaternion(0, 0.7f, 0, -0.7f);       
     }
 
+	/// <summary>
+	/// Playr死亡
+	/// </summary>
+	public void PlayerDead()
+	{
+		print ("Player死亡");
+	}
+
     #endregion
 
 	#region 虚方法
@@ -131,7 +139,8 @@ public class PlayerBase : MonoBehaviour
 	public virtual void PlayerJump ()
 	{
 		if (m_isJump) {
-			m_ant.SetBool ("ant_drop", true);						
+			m_ant.SetBool ("ant_drop", true);	
+			m_rig.velocity = Vector3.zero;
 			m_rig.velocity += transform.up * 7;
 			m_isJump = false;
 		}
