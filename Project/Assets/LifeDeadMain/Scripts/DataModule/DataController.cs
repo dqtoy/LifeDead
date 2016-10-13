@@ -34,14 +34,13 @@ public class DataController
     /// 私有构造方法
     /// </summary>
     private DataController ()
-	{
-		LoadJsonData ();
+	{		
         path = "/StreamingAssets/DataJson.json";
 
         m_levelData = new LevelData();
-
-        LoadJsonData ();
-        
+               
+        // 刷新数据
+        LoadJsonData();
     }
 
 	/// <summary>
@@ -63,10 +62,11 @@ public class DataController
     #region 数据更新
     /// <summary>
     /// 更新数据
+    /// 加载数据 
     /// </summary>
     public void LoadJsonData()
-    {
-        FileInfo file = new FileInfo(Application.dataPath + "/StreamingAssets/DataJson.json");
+    {    
+        FileInfo file = new FileInfo(Application.dataPath + path);
         StreamReader sr = new StreamReader(file.OpenRead(), Encoding.UTF8);
         string content = sr.ReadToEnd();
         sr.Close();
@@ -85,6 +85,7 @@ public class DataController
     public int GetUnLockPlayer ()
 	{
         // 获取数据
+        // 获取数据      
         return (int)parseDate["PlayerCount"];      
 	}
 
@@ -135,6 +136,7 @@ public class DataController
     {
         parseDate["IsPlayStartAnimation"] = index;
 
+        // 文件数据写入
         FileStream file = new FileStream(Application.dataPath + path, FileMode.Create);
         byte[] bts = System.Text.Encoding.UTF8.GetBytes(parseDate.ToJson());
         file.Write(bts, 0, bts.Length);
@@ -153,9 +155,11 @@ public class DataController
     {     
         m_levelData.Name = (int)parseDate["LevelData"][index]["Name"];
         m_levelData.Time = (int)parseDate["LevelData"][index]["Time"];
+        m_levelData.Name = (int)parseDate["LevelData"][index]["Name"];      
         m_levelData.StarNum = (int)parseDate["LevelData"][index]["StarNum"];
         m_levelData.Score = (int)parseDate["LevelData"][index]["Score"];
         m_levelData.SumScore = (int)parseDate["LevelData"][index]["SumScore"];
+        m_levelData.Time = (int)parseDate["LevelData"][index]["Time"];
         return m_levelData;
     }
     #endregion
@@ -168,22 +172,20 @@ public class DataController
     /// <param name="m_levelCurrent"></param>
     public void SaveData (int m_playerUnLockCount, int m_levelCurrent,LevelData levelData)
 	{
-
-
         // 保存解锁关卡信息和解锁人物信息
         parseDate["PlayerCount"] = m_playerUnLockCount;
         parseDate["LevelCurrent"] = m_levelCurrent;
 
+        // Json数据从0开始计数 第一关为第0个对象
         levelData.Name -= 1;
 
         // 保存当前关卡的玩家信息
         parseDate["LevelData"][levelData.Name]["Time"] = levelData.Time;
         parseDate["LevelData"][levelData.Name]["StarNum"] = levelData.StarNum;
         parseDate["LevelData"][levelData.Name]["Score"] = levelData.Score;
-
-       
-
-        FileStream file = new FileStream (Application.dataPath + "/StreamingAssets/DataJson.json", FileMode.Create);
+               
+        // 文件写入
+        FileStream file = new FileStream (Application.dataPath + path, FileMode.Create);
 		byte[] bts = System.Text.Encoding.UTF8.GetBytes (parseDate.ToJson ());
 		file.Write (bts, 0, bts.Length);
 		if (file != null) {

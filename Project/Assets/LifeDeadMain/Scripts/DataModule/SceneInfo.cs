@@ -58,6 +58,8 @@ public static class SceneInfo
     {                 
         int starcount = 0;
         if (CurTime / Time > 0.3f)
+             
+        if (CurTime / Time < 0.5f)
         {
             starcount++;
             if (CurScore / SumScore > 0.3f && CurScore / SumScore < 0.6f)
@@ -69,9 +71,12 @@ public static class SceneInfo
                 starcount = starcount + 2;
             }
         
+            }                   
             return starcount;
         }
         else if (CurTime / Time < 0.3f)
+        }      
+        else if (CurTime / Time > 0.5f)
         {
             if (CurScore / SumScore > 0.3f && CurScore / SumScore < 0.6f)
             {
@@ -82,10 +87,12 @@ public static class SceneInfo
                 starcount = starcount + 2;
             }
         
+           
             return starcount;
         }
         else
         {      
+        {            
             return starcount;
         }
     }
