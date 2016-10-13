@@ -84,7 +84,6 @@ public class DataController
     /// <returns>当前人物</returns>
     public int GetUnLockPlayer ()
 	{
-        // 获取数据
         // 获取数据      
         return (int)parseDate["PlayerCount"];      
 	}
