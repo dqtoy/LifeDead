@@ -1,16 +1,14 @@
-<<<<<<< HEAD
-{"PlayerCount":0,"LevelCurrent":2,"IsPlayStartAnimation":1,"LevelData":[{"Name":1,"Time":0.0,"Score":0,"StarNum":0,"SumTime":"60","SumScore":100},{"Name":2,"Time":"5.25","Score":0,"StarNum":0,"SumTime":60,"SumScore":100},{"Name":3,"Time":5.23,"Score":0,"StarNum":0,"SumTime":"60","SumScore":100},{"Name":4,"Time":5.23,"Score":0,"StarNum":0,"SumTime":60,"SumScore":100}]}
-=======
+
 {
   "PlayerCount": 0,
-  "LevelCurrent": 2,
+  "LevelCurrent": 0,
   "IsPlayStartAnimation": 1,
   "LevelData": [
     {
       "Name": 1,
       "Time": 13,
       "Score": 0,
-      "StarNum": 1,
+      "StarNum": 0,
       "SumTime": 20,
       "SumScore": 100
     },
@@ -89,4 +87,4 @@
     }
   ]
 }
->>>>>>> 7a8fb9b5188369fbcf7648c2c26606a0953af350
+

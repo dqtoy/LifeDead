@@ -12,11 +12,8 @@ using System.IO;
 using System.Text;
 using System;
 
-<<<<<<< HEAD
+
 public class DataController
-=======
-public class DataController : MonoBehaviour
->>>>>>> 7a8fb9b5188369fbcf7648c2c26606a0953af350
 {
     #region 字段
     // 关卡数据Model
@@ -115,17 +112,10 @@ public class DataController : MonoBehaviour
     /// </summary>
     /// <param name="index">当前关卡</param>
     /// <returns></returns>
-<<<<<<< HEAD
-    public float GetSumTime(int index)
-    {            
-        object o = parseDate["LevelData"][index]["SumTime"];
 
-        return Convert.ToSingle(o);      
-=======
     public int GetSumTime(int index)
     {    
         return (int)parseDate["LevelData"][index]["SumTime"];   
->>>>>>> 7a8fb9b5188369fbcf7648c2c26606a0953af350
     }
 
     /// <summary>
@@ -145,10 +135,6 @@ public class DataController : MonoBehaviour
     {
         parseDate["IsPlayStartAnimation"] = index;
 
-<<<<<<< HEAD
-        
-=======
->>>>>>> 7a8fb9b5188369fbcf7648c2c26606a0953af350
         FileStream file = new FileStream(Application.dataPath + path, FileMode.Create);
         byte[] bts = System.Text.Encoding.UTF8.GetBytes(parseDate.ToJson());
         file.Write(bts, 0, bts.Length);
@@ -164,27 +150,12 @@ public class DataController : MonoBehaviour
     /// <param name="index">当前关卡</param>
     /// <returns></returns>
     public LevelData LoadLevelData(int index)
-<<<<<<< HEAD
-    {            
-        m_levelData.Name = (int)parseDate["LevelData"][index]["Name"];      
-        m_levelData.StarNum = (int)parseDate["LevelData"][index]["StarNum"];
-        m_levelData.Score = (int)parseDate["LevelData"][index]["Score"];
-
-        object o = parseDate["LevelData"][index]["Time"];
-        m_levelData.Time = Convert.ToSingle(o);
-       
-=======
     {     
         m_levelData.Name = (int)parseDate["LevelData"][index]["Name"];
-        m_levelData.Time = 50;
-
+        m_levelData.Time = (int)parseDate["LevelData"][index]["Time"];
         m_levelData.StarNum = (int)parseDate["LevelData"][index]["StarNum"];
         m_levelData.Score = (int)parseDate["LevelData"][index]["Score"];
-
-        //object o = parseDate["LevelData"][index]["Time"];
-       // m_levelData.Time = Convert.ToSingle(50);
-
->>>>>>> 7a8fb9b5188369fbcf7648c2c26606a0953af350
+        m_levelData.SumScore = (int)parseDate["LevelData"][index]["SumScore"];
         return m_levelData;
     }
     #endregion
