@@ -59,6 +59,7 @@ public class SelectCustoms : MonoBehaviour
         m_levelCurrentCount = m_dataController.GetlevelCurrent();
 
 
+
         m_levelName = new string[m_levelSum];
         imageArray = new Image[m_levelSum];
         m_switchButton = new Button[m_levelSum];
@@ -66,16 +67,31 @@ public class SelectCustoms : MonoBehaviour
         index = 0;
 
         SetLevleName();
+       
     }
 
     void Start()
     {
-
-
+     
         // 位置初始化
         LeftPos = GameObject.Find("LeftPos").GetComponent<RectTransform>();
         RightPos = GameObject.Find("RightPos").GetComponent<RectTransform>();
         CenterPos = GameObject.Find("CenterPos").GetComponent<RectTransform>();
+
+        #region 遍历关卡数量，注册关卡点击事件
+        for (int i = 0; i < m_levelSum; i++)
+        {
+            imageArray[i] = GameObject.Find("customs" + i).GetComponent<Image>();
+            m_switchButton[i] = GameObject.Find("customs" + i).GetComponent<Button>();
+          
+            if (i <= m_levelCurrentCount)
+            {
+                m_lockImage = imageArray[i].GetComponentsInChildren<Image>()[1];
+                m_lockImage.gameObject.SetActive(false);
+                m_switchButton[i].onClick.AddListener(SwitchLevel);
+            }
+        }
+        imageArray[0].rectTransform.position = CenterPos.position;
 
         #region 点击事件注册
         m_buttonRight = GameObject.Find("ButtonRight").GetComponent<Button>();
@@ -85,25 +101,12 @@ public class SelectCustoms : MonoBehaviour
         m_buttonLeft.onClick.AddListener(LeftButtonAction);
         #endregion
 
-        #region 遍历关卡数量，注册关卡点击事件
-        for (int i = 0; i < m_levelSum; i++)
-        {
-            imageArray[i] = GameObject.Find("customs" + i).GetComponent<Image>();
-            m_switchButton[i] = GameObject.Find("customs" + i).GetComponent<Button>();
-
-            if (i <= m_levelCurrentCount)
-            {
-                m_lockImage = imageArray[i].GetComponentsInChildren<Image>()[1];
-                m_lockImage.gameObject.SetActive(false);
-                m_switchButton[i].onClick.AddListener(SwitchLevel);
-            }
-        }
-        imageArray[0].rectTransform.position = CenterPos.position;
         #endregion
     }
 
     void Update()
     {
+        // imageArray[index].
         star1 = imageArray[index].transform.FindChild("StarPanel/StarBg1/Star1").GetComponent<Image>();
         star2 = imageArray[index].transform.FindChild("StarPanel/StarBg2/Star2").GetComponent<Image>();
         star3 = imageArray[index].transform.FindChild("StarPanel/StarBg3/Star3").GetComponent<Image>();
@@ -115,6 +118,7 @@ public class SelectCustoms : MonoBehaviour
     /// </summary>
     public void RightButtonAction()
     {
+
         if (index < 1)
         {
             return;
@@ -131,6 +135,7 @@ public class SelectCustoms : MonoBehaviour
     /// </summary>
     public void LeftButtonAction()
     {
+    
         if (index > imageArray.Length - 2)
         {
             return;
