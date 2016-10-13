@@ -51,7 +51,7 @@ public class DoorWayScript : MonoBehaviour
         print("所用时间"+m_currentTime);
 
         // 获取所有当前关卡要存储的数据 封装到LevelData类中
-        m_starCount = SceneInfo.CalculateInfo(SubstringLevelName(m_sceneName)-2, m_currentTime);
+        m_starCount = SceneInfo.CalculateInfo(SubstringLevelName(m_sceneName)-1, m_currentTime);
 
         print("性的个数"+ m_starCount);
         // 封装用户数据
@@ -92,6 +92,6 @@ public class DoorWayScript : MonoBehaviour
         string strtempn = "n";
         int IndexofN = strLevelName.IndexOf(strtempn);
         int levelNum = Convert.ToInt32(strLevelName.Substring(IndexofN + 1));
-        return levelNum+1;
+        return levelNum;
     }
 }

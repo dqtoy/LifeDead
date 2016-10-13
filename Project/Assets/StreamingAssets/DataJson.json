@@ -6,7 +6,7 @@
   "LevelData": [
     {
       "Name": 1,
-      "Time": 13,
+      "Time": 10,
       "Score": 0,
       "StarNum": 0,
       "SumTime": 20,
@@ -17,8 +17,8 @@
       "Name": 2,
       "Time": 23.8521614074707,
       "Score": 0,
-      "StarNum": 1,
-      "SumTime": 60,
+      "StarNum": 0,
+      "SumTime": 20,
       "SumScore": 100
     },
     {
