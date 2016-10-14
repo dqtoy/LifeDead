@@ -18,6 +18,8 @@ public class PatrolScript : MonoBehaviour
 	// 物体移动到终点的时间
 	public float m_moveDelay;
 
+	Tweener m_tweener;
+
 	void Start ()
 	{	
 		Init ();
@@ -38,8 +40,8 @@ public class PatrolScript : MonoBehaviour
 	/// </summary>
 	void Patrol ()
 	{
-		Tweener tweener = transform.DOMove (m_tempPos, m_moveDelay);
-		tweener.OnComplete (ChangePos);
+		m_tweener = transform.DOMove (m_tempPos, m_moveDelay);
+		m_tweener.OnComplete (ChangePos);
 	}
 
 	/// <summary>
@@ -49,6 +51,19 @@ public class PatrolScript : MonoBehaviour
 	{
 		Vector3 m_endPos = m_endPosGameObject.transform.position;
 		m_tempPos = (m_tempPos == m_endPos) ? (m_tempPos = m_startPos) : (m_tempPos = m_endPos);
+		transform.Rotate (transform.up,180);
 		Patrol ();
 	}
+
+	/// <summary>
+	/// Stops all tween.
+	/// </summary>
+	public void StopTween()
+	{
+		print ("SB");
+		m_tweener.Pause ();
+
+	}
+
+
 }

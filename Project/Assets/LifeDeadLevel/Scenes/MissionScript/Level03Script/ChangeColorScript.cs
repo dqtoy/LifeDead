@@ -16,6 +16,9 @@ public class ChangeColorScript : MonoBehaviour
 	// 网格渲染器组件
 	private MeshRenderer m_meshRenderer;
 
+	// 刺对象脚本
+	private Thorn m_thorn;
+
 
 	// Use this for initialization
 	void Start ()
@@ -23,6 +26,7 @@ public class ChangeColorScript : MonoBehaviour
 		m_colorIndex = 0;
 		m_maxColorIndex = 2;
 		m_meshRenderer = transform.parent.GetComponent<MeshRenderer> ();
+		m_thorn = GameObject.Find ("Thorn").GetComponent<Thorn>();
 	}
 
 	/// <summary>
@@ -36,6 +40,7 @@ public class ChangeColorScript : MonoBehaviour
 			if (m_colorIndex <= m_maxColorIndex) {				
 				ChangeColor (m_colorIndex);
 				m_colorIndex++;
+				m_thorn.Shake ();
 
 			}
 		}
