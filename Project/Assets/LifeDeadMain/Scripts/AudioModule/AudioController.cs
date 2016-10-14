@@ -17,8 +17,8 @@ public class AudioController : MonoBehaviour
 
     void Start()
     {
-        m_playerAudioScript = GameObject.FindWithTag(Tags.m_playerAudio).GetComponent<PlayerAudioAbstract>(); ;
-        m_sceneAudioScript = GameObject.FindWithTag(Tags.m_sceneAudio).GetComponent<SceneAudioAbstract>();
+        //m_playerAudioScript = GameObject.FindWithTag(Tags.m_playerAudio).GetComponent<PlayerAudioAbstract>(); ;
+        //m_sceneAudioScript = GameObject.FindWithTag(Tags.m_sceneAudio).GetComponent<SceneAudioAbstract>();
     }	
 
     /// <summary>

@@ -15,6 +15,8 @@ public class PlayerMenuController : MonoBehaviour
     private Button m_replayButton;
     private Button m_returnButton;
 
+    //AudioController m_audioController;
+
     private RectTransform m_selectBar;
     #endregion
 
@@ -46,6 +48,8 @@ public class PlayerMenuController : MonoBehaviour
         m_returnButton.onClick.AddListener(ReturnButtonAction);
         #endregion
         m_selectBar = GameObject.Find("SelectBar").GetComponent<RectTransform>();
+        // 播放背景音效
+       // m_audioController.GetSceneAudioAbstract().PlayBGAudio(1);
     }
     
     /// <summary>
@@ -53,7 +57,7 @@ public class PlayerMenuController : MonoBehaviour
     /// </summary>
     public void LeftButtonAction()
     {
-
+        //m_audioController.GetSceneAudioAbstract().PlayButtonAudioA();
     }
 
     /// <summary>

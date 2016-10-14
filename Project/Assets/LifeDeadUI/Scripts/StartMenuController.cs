@@ -9,6 +9,7 @@ public class StartMenuController : MonoBehaviour
 {
     #region 字段
     DataController m_dataController;
+    AudioController m_audioController;
     /// <summary>
     /// 开始按钮
     /// </summary>
@@ -40,6 +41,7 @@ public class StartMenuController : MonoBehaviour
     }
     void Start()
     {
+        //m_audioController.GetSceneAudioAbstract().PlayBGAudio();
         m_startButton = GameObject.Find("StartButton").GetComponent<Button>();
         m_startButton.onClick.AddListener(StartButtonAction);
 
